@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegistrationForm
 from django.contrib import messages
 
@@ -8,6 +8,22 @@ def home(request):
     return render(request, 'cleaning/index.html')
 
 def login_view(request):
+    if request.method == 'POST':
+        # Get the username and password from the form
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # Authenticate the user
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            # Log the user in and redirect to a success page
+            login(request, user)
+            return redirect('home')
+        else:
+            # If the login is unsuccessful, add an error message
+            context = {'error_message': 'Invalid username or password'}
+            return render(request, 'cleaning/login.html', context)    
     return render(request, 'cleaning/login.html')
 
 # registration
@@ -32,3 +48,7 @@ def signup_view(request):
         form = UserRegistrationForm()
 
     return render(request, 'cleaning/register.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
