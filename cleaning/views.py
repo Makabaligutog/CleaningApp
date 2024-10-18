@@ -5,10 +5,10 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'cleaning/index.html')
 
 def login_view(request):
-    return render(request, 'login.html')
+    return render(request, 'cleaning/login.html')
 
 # registration
 def signup_view(request):
@@ -31,4 +31,4 @@ def signup_view(request):
     else:
         form = UserRegistrationForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'cleaning/register.html', {'form': form})
