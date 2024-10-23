@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
-from .forms import UserRegistrationForm
+from .forms import RegisterForm
 from django.contrib import messages
 
 def home(request):
@@ -19,17 +19,36 @@ def login_view(request):
         if user is not None:
             # Log the user in and redirect to a success page
             login(request, user)
-            return redirect('home')
+            return redirect('u_home')
         else:
-            # If the login is unsuccessful, add an error message
-            context = {'error_message': 'Invalid username or password'}
-            return render(request, 'cleaning/login.html', context)    
+            # If login fails, use Django's messages framework
+            messages.error(request, 'Invalid username or password')
+            return render(request, 'cleaning/login.html')    
+
+    # If GET request or login fails, render the login page
     return render(request, 'cleaning/login.html')
+    # if request.method == 'POST':
+    #     # Get the username and password from the form
+    #     username = request.POST.get('username')
+    #     password = request.POST.get('password')
+        
+    #     # Authenticate the user
+    #     user = authenticate(request, username=username, password=password)
+        
+    #     if user is not None:
+    #         # Log the user in and redirect to a success page
+    #         login(request, user)
+    #         return redirect('home')
+    #     else:
+    #         # If the login is unsuccessful, add an error message
+    #         context = {'error_message': 'Invalid username or password'}
+    #         return render(request, 'cleaning/login.html', context)    
+    # return render(request, 'cleaning/login.html')
 
 # registration
 def signup_view(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             # Create a new user
             email = form.cleaned_data.get('email')
@@ -45,10 +64,13 @@ def signup_view(request):
             messages.success(request, 'Registration successful.')
             return redirect('home')  # Redirect to the home page or another URL
     else:
-        form = UserRegistrationForm()
+        form = RegisterForm()
 
     return render(request, 'cleaning/register.html', {'form': form})
 
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def Userhomepage(request):
+        return render(request, 'cleaning/u-index.html')

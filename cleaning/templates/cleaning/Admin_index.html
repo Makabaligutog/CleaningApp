@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busy Bee Cleaning Co.</title>
-
-    <!-- Load static files -->
-    {% load static %}
-
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header>
         <nav>
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+            <img src="image1/logo1.png" class="logo" alt="logo">
             <ul class="centered-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="blog.html">Blog</a></li><p>{{ request.user.username }}</p>
-
+                <li><a href="Admin_index.html">Home</a></li>
+                <li><a href="Admin_services.html">Services</a></li>
+                <li><a href="Admin_About.html">About Us</a></li>
+                <li><a href="Admin_Blog.html">Blog</a></li>
             </ul>
+            <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
-    </header>
 
+    </header>
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+            <a href="admin.html">Admin Dashboard</a>
+            <a href="#"></a>
+            <a href="loginAdmin.html">Logout</a>
+        </div>
     <div class="content">
         <div class="men_text">
             <h1>Clear<span>View</span></h1><br><h2>"Cleaning Services"</h2>
 
             <div class="main_image">
-                <img src="{% static 'images/girl-cleaning.png' %}">
+                <img src="images/girl-cleaning.png">
             </div>
 
             <div class="text">
@@ -42,15 +43,8 @@
                     and eco-friendly green cleaning options. 
                 </p>
             </div>
-
-            <!-- Book Now and Login Buttons -->
-            <div class="buttons">
-                <a href="{% url 'signup' %}" class="login-btn" id="loginBtn">Register now</a>
-            </div>
         </div>
     </div>
-
-    <!-- Include your JS file -->
-    <script src="{% static 'scripts/index.js' %}"></script>
+    <script src="index.js"></script>
 </body>
 </html>

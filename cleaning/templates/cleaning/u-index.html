@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busy Bee Cleaning Co.</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="image1/logo1.png" class="logo" alt="Busy Bee Cleaning Company logo">
+            <ul class="centered-menu">
+                <li><a href="u-index.html">Home</a></li>
+                <li><a href="u-services.html">Services</a></li>
+                <li><a href="u-about.html">About Us</a></li>
+                <li><a href="u-blog.html">Blog</a></li>
+            </ul>
+            <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
+
+        </nav>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <a href="client_table.html">User Profile</a>
+        <a href="#"></a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="men_text">
+            <h1>Clear<span>View</span></h1>
+            <h2>"Cleaning Services"</h2>
+            <div class="main_image">
+                <img src="images/girl-cleaning.png" alt="Girl cleaning" />
+            </div>
+
+            <div class="text">
+                <p>
+                    Sayago Cleaning Inc. offers a range of cleaning services, including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
+                    They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
+                    Specialty services include carpet and upholstery cleaning, window washing, 
+                    and eco-friendly green cleaning options. 
+                </p>
+            </div>
+
+            <!-- Book Now Button -->
+            <div class="buttons">
+                <a href="#" class="book-now" id="bookNowBtn">Book Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for the Booking Form -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Book a Cleaning Service</h2>
+
+            <!-- Updated Booking Form -->
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="cleaningType">Choose a Cleaning Service:</label>
+                    <select id="cleaningType" name="cleaningType" required>
+                        <option value="" disabled selected>Select a service</option>
+                        <option value="residential">Residential Cleaning</option>
+                        <option value="commercial">Commercial Cleaning</option>
+                        <option value="deep-cleaning">Deep Cleaning</option>
+                        <option value="move-in-out">Move-in/Move-out Cleaning</option>
+                        <option value="carpet-cleaning">Carpet Cleaning</option>
+                        <option value="upholstery-cleaning">Upholstery Cleaning</option>
+                        <option value="window-cleaning">Window Cleaning</option>
+                        <option value="eco-friendly">Eco-friendly Green Cleaning</option>
+                    </select>
+                </div>
+                <!-- Full Name Field -->
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+            </div>
+            
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information or Requests:</label>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Any special requests or information"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
+                    <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+
+            <div class="thank-you-message" id="thankYouMessage">
+                <p>Thank you for booking with us! We will get in touch with you soon.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="user_index.js"></script>
+</body>
+</html>
