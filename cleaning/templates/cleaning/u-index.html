@@ -19,7 +19,7 @@
                 <li><a href="{% url 'services' %}">Services</a></li> 
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'blog' %}">Blog</a></li> 
-                <li>{{ request.user.username }}</li> <!-- Fix: Make this a list item -->
+                <li>{{ request.user.email }}</li> <!-- Fix: Make this a list item -->
             </ul>
             <!-- Profile icon triggers a sidebar -->
             <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
@@ -81,42 +81,27 @@
                         <option value="eco-friendly">Eco-friendly Green Cleaning</option>
                     </select>
                 </div>
-
-                <!-- Full Name Field -->
                 <div class="form-group">
                     <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required autocomplete="name">
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
                 </div>
-
-                <!-- Contact Number Field -->
                 <div class="form-group">
                     <label for="contactNumber">Contact Number:</label>
-                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required autocomplete="tel">
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
                 </div>
-
-                <!-- Address Field -->
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <textarea id="address" name="address" placeholder="Enter your address" required autocomplete="address-line1"></textarea>
+                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
                 </div>
-
-                <!-- Additional Information Field -->
-                <div class="form-group">
-                    <label for="additionalInfo">Additional Information or Requests:</label>
-                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Any special requests or information" autocomplete="off"></textarea>
-                </div>
-
-                <!-- Privacy Policy Agreement -->
                 <div class="form-group">
                     <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
                     <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>
                 </div>
-
-                <!-- Submit Button -->
                 <div class="form-group">
                     <button type="submit">Submit</button>
                 </div>
             </form>
+            
 
             <!-- Thank You Message -->
             <div class="thank-you-message" id="thankYouMessage" style="display:none;">

@@ -52,8 +52,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
-// Define the URL for the create_booking view at the start of your script
-const createBookingUrl = "/create_booking/"; // Set this to your actual booking URL
+// // Define the URL for the create_booking view at the start of your script
+// const createBookingUrl = "/create_booking/"; // Set this to your actual booking URL
 
 // Form submission logic
 bookingForm.onsubmit = function(event) {
@@ -63,11 +63,11 @@ bookingForm.onsubmit = function(event) {
     const formData = new FormData(this);
 
     // Send form data to the Django backend
-    fetch(createBookingUrl, {  // Use the defined URL here
+    fetch("/booking/create/", {  // Use the correct URL path here
         method: "POST",
         body: formData,
         headers: {
-            "X-CSRFToken": getCookie('csrftoken'),  // Add CSRF token
+            "X-CSRFToken": getCookie('csrftoken'),
         },
     })
     .then(response => {
@@ -76,10 +76,7 @@ bookingForm.onsubmit = function(event) {
             bookingForm.style.display = 'none';
             thankYouMessage.style.display = 'block';
         } else {
-            // Attempt to read the JSON error response
-            return response.json().then(errorData => {
-                alert(errorData.error || "There was an error with your booking. Please try again.");
-            });
+            alert("There was an error with your booking. Please try again.");
         }
     })
     .catch(error => {
