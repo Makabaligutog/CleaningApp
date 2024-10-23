@@ -68,9 +68,12 @@ def signup_view(request):
 
     return render(request, 'cleaning/register.html', {'form': form})
 
+
+#logout
 def logout_view(request):
     logout(request)
     return redirect('login')
 
+#User homepage
 def Userhomepage(request):
         return render(request, 'cleaning/u-index.html')
