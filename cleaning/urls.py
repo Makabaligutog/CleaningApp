@@ -10,10 +10,10 @@ urlpatterns = [
     path('user_service/', views.services, name='services'),
     path('user_about/', views.about, name='about'),
     path('user_blog/', views.blog, name='blog'),
-    path('admin_homepage', views.admin_home, name='admin_home'),
-    path('admin_services', views.admin_services, name='admin_services'),
-    path('admin_about', views.admin_about, name='admin_about'),
-    path('admin_blog', views.admin_blog, name='admin_blog'),
+    path('admin_homepage', views.admin_home, name='ad_home'),
+    path('admin_services', views.admin_services, name='ad_services'),
+    path('admin_about', views.admin_about, name='ad_about'),
+    path('admin_blog', views.admin_blog, name='ad_blog'),
     
    
 ]

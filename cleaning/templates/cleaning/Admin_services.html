@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busy Bee Cleaning Co.</title>
-    <link rel="stylesheet" href="services.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/services.css' %}">
 </head>
 <body>
     <header>
-        
         <nav>
-            <img src="image1/logo1.png" class="logo" alt="logo">
+            <img src="{% static 'image1/logo1.png' %}" class="logo" alt="logo">
             <ul class="centered-menu">
-                <li><a href="Admin_index.html">Home</a></li>
-                <li><a href="Admin_services.html">Services</a></li>
-                <li><a href="Admin_About.html">About Us</a></li>
-                <li><a href="Admin_Blog.html">Blog</a></li>
+                <li><a href="{% url 'admin_home' %}">Home</a></li>
+                <li><a href="{% url 'admin_services' %}">Services</a></li>
+                <li><a href="{% url 'admin_about' %}">About Us</a></li>
+                <li><a href="{% url 'admin_blog' %}">Blog</a></li> 
             </ul>
         </nav>
         <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
@@ -24,9 +24,9 @@
     </header>
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-        <a href="admin.html">Admin Dashboard</a>
+        {% comment %} <a href="admin.html">Admin Dashboard</a>
         <a href="#"></a>
-        <a href="loginAdmin.html">Logout</a>
+        <a href="loginAdmin.html">Logout</a> {% endcomment %}
     </div>
 
     <section id="services" class="services-section"></section>
