@@ -1,108 +1,139 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
-from .forms import RegisterForm
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import UpdateView, DeleteView
+from .models import Booking
+from .forms import RegisterForm, BookingForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
+# Home view
 def home(request):
     return render(request, 'cleaning/index.html')
 
+# User Login View
 def login_view(request):
     if request.method == 'POST':
-        # Get the username and password from the form
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        # Authenticate the user
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
-            # Log the user in and redirect to a success page
             login(request, user)
-            return redirect('u_home')#u_home is my user homepage after i login
+            return redirect('u_home')
         else:
-            # If login fails, use Django's messages framework
             messages.error(request, 'Invalid username or password')
-            return render(request, 'cleaning/login.html')    
-
-    # If GET request or login fails, render the login page
+    
     return render(request, 'cleaning/login.html')
-    # if request.method == 'POST':
-    #     # Get the username and password from the form
-    #     username = request.POST.get('username')
-    #     password = request.POST.get('password')
-        
-    #     # Authenticate the user
-    #     user = authenticate(request, username=username, password=password)
-        
-    #     if user is not None:
-    #         # Log the user in and redirect to a success page
-    #         login(request, user)
-    #         return redirect('home')
-    #     else:
-    #         # If the login is unsuccessful, add an error message
-    #         context = {'error_message': 'Invalid username or password'}
-    #         return render(request, 'cleaning/login.html', context)    
-    # return render(request, 'cleaning/login.html')
 
-# registration
+# User Registration View
 def signup_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            # Create a new user
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            
-            # Create and save the user
-            user = User.objects.create_user(username=email, email=email, password=password)
-            
-            # Log the user in automatically after registration
-            login(request, user)
-            
-            # Redirect to a success page (e.g., home)
+            user = form.save()  # Automatically saves the user
+            login(request, user)  # Log the user in after registration
             messages.success(request, 'Registration successful.')
-            return redirect('home')  # Redirect to the home page or another URL
+            return redirect('u_home')  # Redirect to home after signup
     else:
         form = RegisterForm()
 
     return render(request, 'cleaning/register.html', {'form': form})
 
+#booking na
+@login_required
+def create_booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user  # Associate the booking with the logged-in user
+            booking.save()
+            return JsonResponse({"message": "Booking created successfully!"}, status=201)
 
-#logout
+        # If form is invalid, return the specific errors
+        return JsonResponse({"error": form.errors}, status=400)
+
+    # Return error for methods other than POST
+    return JsonResponse({"error": "Invalid request method."}, status=405)
+
+# User Profile View
+@login_required
+def profile_view(request):
+    try:
+        booking = Booking.objects.get(user=request.user)
+    except Booking.DoesNotExist:
+        booking = None  # Handle case where no booking exists
+    return render(request, 'cleaning/user_profile.html', {'booking': booking})
+
+# Update Booking View
+@method_decorator(login_required, name='dispatch')
+class BookingUpdateView(UpdateView):
+    model = Booking
+    form_class = BookingForm
+    template_name = 'booking_update.html'
+    success_url = reverse_lazy('profile_view')
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user)
+
+# Delete Booking View
+@method_decorator(login_required, name='dispatch')
+class BookingDeleteView(DeleteView):
+    model = Booking
+    template_name = 'booking_confirm_delete.html'
+    success_url = reverse_lazy('profile_view')
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user)
+
+# User Logout View
 def logout_view(request):
     logout(request)
     return redirect('login')
 
-
-#user homepage
+# User Homepage
 def user_home(request):
-    return render(request, 'cleaning/u-index.html') 
+    return render(request, 'cleaning/u-index.html')
 
-#user services page
+# User Services Page
 def services(request):
     return render(request, 'cleaning/u-services.html')
 
-#user about us
+# User About Us Page
 def about(request):
     return render(request, 'cleaning/u-about.html')
 
-#user blog
+# User Blog Page
 def blog(request):
     return render(request, 'cleaning/u-blog.html')
 
-#admin homepage
+# Admin Views
 def admin_home(request):
     return render(request, 'cleaning/admin_index.html')
 
-#admin services page
 def admin_services(request):
     return render(request, 'cleaning/admin_services.html')
 
-#admin about page
 def admin_about(request):
     return render(request, 'cleaning/admin_about.html')
 
-#admin blog page
 def admin_blog(request):
     return render(request, 'cleaning/admin_blog.html')
+
+# About Home Page
+def about_home(request):
+    return render(request, 'cleaning/about.html')
+
+# Services Home Page
+def services_home(request):
+    return render(request, 'cleaning/services.html')
+
+# Blog Home Page
+def blog_home(request):
+    return render(request, 'cleaning/blog.html')

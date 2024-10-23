@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
     color: black;
 }
@@ -31,19 +31,8 @@ nav .logo {
     left: 150px;
     top: 10px;
 }
-.blog-item {
-    position: relative;
-}
 
-.blog-item .logo {
-    width: 150px; /* Adjust the size of the logo as necessary */
-    height: auto;
-    margin-right: 40px; /* Adjust the position to the right */
-    transform: translateY(-50%); /* Fine-tune the vertical alignment */
-}
-
-
-/* Button below the contact info */
+/* Button styling */
 .book-now {
     background-color: #ff6f00; 
     color: white;
@@ -52,6 +41,7 @@ nav .logo {
     border-radius: 5px;
     font-weight: bold;
     margin-left: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .book-now:hover {
@@ -65,7 +55,7 @@ nav .logo {
     margin-top: 20px;
 }
 
-.book-now, .login-btn {
+.login-btn {
     text-decoration: none;
     background-color: #ff9900;
     color: white;
@@ -75,29 +65,32 @@ nav .logo {
     transition: background-color 0.3s ease;
 }
 
-.book-now:hover, .login-btn:hover {
+.login-btn:hover {
     background-color: #cc7a00;
 }
 
 /* Navigation styles */
 nav {
     font-size: 25px;
-    font-style: inherit;
     color: white;
     text-align: center;
     padding-top: 70px;
-    padding-left: 100px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0; /* Added to reset default padding */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 60px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-}
-
-nav ul.centered-menu li {
-    display: inline;
-    margin-right: 60px;
 }
 
 .centered-menu li a:hover {
@@ -110,14 +103,13 @@ nav ul.centered-menu li {
 
 .service-photo {
     width: 100%; /* Adjust the width as needed */
-    max-width: 600px; /* This limits the image size */
+    max-width: 600px; /* Limits the image size */
     height: auto;
     margin-top: 20px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 /* Modal styling */
 .modal {
@@ -147,22 +139,7 @@ nav ul.centered-menu li {
     position: relative;
     text-align: center;
     animation: slideInUp 0.4s ease forwards; /* Apply animation */
-    transform: translateY(100px); /* Initial position for slide */
     opacity: 0; /* Initially hidden */
-    transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transition */
-}
-.logout {
-    background-color: #FFA500;
-    padding: 10px 20px;
-    color: white;
-    border: 2px solid white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.logout:hover {
-    background-color: #cc8500;
 }
 
 /* Close button */
@@ -211,7 +188,7 @@ form {
 }
 
 .form-group textarea {
-    height: 80px; /* Reduce textarea height */
+    height: 80px; /* Standard height for textarea */
     resize: none;
 }
 
@@ -278,12 +255,9 @@ form {
     }
     .book-now {
         margin-top: 10px; /* Space above button on small screens */
-    } 
+    }
 }
-.form-group textarea#address {
-    height: 60px; /* Slightly smaller height for the address field */
-}
-/* General Styles */
+
 /* General Styles */
 nav {
     display: flex;
@@ -358,9 +332,10 @@ nav {
 .main-content.sidebar-open {
     margin-right: 250px; /* Adjusts to make space for the sidebar */
 }
+
 .men_text {
     position: relative;
-    /*background-image: url('images/clean.jpeg');  Use your image as background */
+    /* background-image: url('images/clean.jpeg');  Use your image as background */
     background-size: cover; /* Ensure the image covers the entire div */
     background-position: center; /* Center the background image */
     height: 900px; /* Adjust the height as needed */
@@ -372,18 +347,14 @@ nav {
     padding: 100px;
     color: white; /* Ensure text is readable on the background */
 }
+
 .men_text h2 {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* Buttons styling */
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
+/* Social Media Section */
 .social-media {
     text-align: center; /* Center the content */
     margin-top: 30px; /* Space above the section */

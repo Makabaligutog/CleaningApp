@@ -6,20 +6,20 @@
     <title>Busy Bee Cleaning Co. - User Homepage</title>
     <!-- Link to your CSS file -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}?100">
 </head>
 <body>
     <!-- Navigation Bar -->
     <header>
         <nav>
             <!-- Logo -->
-            <img src="{% static 'image1/logo1.png' %}" class="logo">
+            <img src="{% static 'image1/logo1.png' %}" class="logo" alt="Busy Bee Cleaning Co. Logo">
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'services' %}">Services</a></li> 
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'blog' %}">Blog</a></li> 
-                {{ request.user.username }}</p> 
+                <li>{{ request.user.username }}</li> <!-- Fix: Make this a list item -->
             </ul>
             <!-- Profile icon triggers a sidebar -->
             <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
@@ -29,8 +29,8 @@
     <!-- Sidebar for user options like profile, logout -->
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-        {% comment %} <a href="{% url 'user_home' %}">User Profile</a> <!-- Add URL mapping for user profile -->
-        <a href="{% url 'logout' %}">Logout</a> <!-- Add URL mapping for logout --> {% endcomment %}
+        <a href="{% url 'user_profile' %}">User Profile</a> <!-- Add URL mapping for user profile -->
+        <a href="{% url 'login' %}">Logout</a> <!-- Add URL mapping for logout --> 
     </div>
 
     <!-- Main Content Section -->
@@ -65,7 +65,8 @@
             <h2>Book a Cleaning Service</h2>
 
             <!-- Booking Form -->
-            <form id="bookingForm">
+            <form id="bookingForm" action="{% url 'create_booking' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="cleaningType">Choose a Cleaning Service:</label>
                     <select id="cleaningType" name="cleaningType" required>
@@ -84,25 +85,25 @@
                 <!-- Full Name Field -->
                 <div class="form-group">
                     <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required autocomplete="name">
                 </div>
 
                 <!-- Contact Number Field -->
                 <div class="form-group">
                     <label for="contactNumber">Contact Number:</label>
-                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required autocomplete="tel">
                 </div>
 
                 <!-- Address Field -->
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                    <textarea id="address" name="address" placeholder="Enter your address" required autocomplete="address-line1"></textarea>
                 </div>
 
                 <!-- Additional Information Field -->
                 <div class="form-group">
                     <label for="additionalInfo">Additional Information or Requests:</label>
-                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Any special requests or information"></textarea>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Any special requests or information" autocomplete="off"></textarea>
                 </div>
 
                 <!-- Privacy Policy Agreement -->
@@ -125,6 +126,6 @@
     </div>
 
     <!-- JavaScript to handle modal, sidebar and booking form submission -->
-    <script src="{% static 'user_index.js' %}"></script>
+    <script src="{% static 'scripts/user_index.js' %}"></script>
 </body>
 </html>
