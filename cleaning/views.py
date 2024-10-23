@@ -19,7 +19,7 @@ def login_view(request):
         if user is not None:
             # Log the user in and redirect to a success page
             login(request, user)
-            return redirect('u_home')
+            return redirect('u_home')#u_home is my user homepage after i login
         else:
             # If login fails, use Django's messages framework
             messages.error(request, 'Invalid username or password')
@@ -74,6 +74,35 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-#User homepage
-def Userhomepage(request):
-        return render(request, 'cleaning/u-index.html')
+
+#user homepage
+def user_home(request):
+    return render(request, 'cleaning/u-index.html') 
+
+#user services page
+def services(request):
+    return render(request, 'cleaning/u-services.html')
+
+#user about us
+def about(request):
+    return render(request, 'cleaning/u-about.html')
+
+#user blog
+def blog(request):
+    return render(request, 'cleaning/u-blog.html')
+
+#admin homepage
+def admin_home(request):
+    return render(request, 'cleaning/admin_index.html')
+
+#admin services page
+def admin_services(request):
+    return render(request, 'cleaning/admin_services.html')
+
+#admin about page
+def admin_about(request):
+    return render(request, 'cleaning/admin_about.html')
+
+#admin blog page
+def admin_blog(request):
+    return render(request, 'cleaning/admin_blog.html')

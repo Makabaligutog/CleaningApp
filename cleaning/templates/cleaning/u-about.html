@@ -13,11 +13,11 @@
         <nav>
             <img src="image1/logo1.png" class="logo" alt="logo">
             <ul class="centered-menu">
-                <li><a href="u-index.html">Home</a></li>
-                <li><a href="u-services.html">Services</a></li>
-                <li><a href="u-about.html">About Us</a></li>
-                <li><a href="u-blog.html">Blog</a></li>
-                <!-- <li><a href="home.html">Log Out</a></li>  -->
+                <li><a href="{% url 'u_home' %}">Home</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li> 
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li> 
+                {{ request.user.username }}</p>
             </ul>
             <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
