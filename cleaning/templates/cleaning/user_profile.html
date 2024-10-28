@@ -28,7 +28,7 @@
         
         <div class="profile-info">
             <h2>Your Booking Details</h2>
-
+        
             {% if booking %}
                 <table>
                     <tr>
@@ -36,9 +36,12 @@
                         <td>{{ booking.cleaning_service }}</td>
                     </tr>
                     <tr>
-                        <th>Full Name</th>
-                        <!-- Use first_name and last_name instead of full_name -->
-                        <td>{{ booking.first_name }} {{ booking.last_name }}</td>
+                        <th>First Name</th>
+                        <td>{{ booking.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{ booking.last_name }}</td>
                     </tr>
                     <tr>
                         <th>Contact Number</th>
@@ -68,6 +71,7 @@
                 <p>No booking found. Please make a booking.</p>
             {% endif %}
         </div>
+        
 
         <!-- Buttons for editing profile -->
         <div class="buttons">

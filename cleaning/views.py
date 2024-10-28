@@ -56,7 +56,7 @@ def signup_view(request):
             user = form.save()  # Automatically saves the user
             login(request, user)  # Log the user in after registration
             messages.success(request, 'Registration successful.')
-            return redirect('sign_up') 
+            return redirect('signup') 
     else:
         form = RegisterForm()
 
@@ -127,6 +127,14 @@ class BookingDeleteView(DeleteView):
 
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user)
+
+
+#user profile after mag book
+def profile_view(request):
+    # Fetch the user's latest booking, if any
+    booking = Booking.objects.filter(user=request.user).last()  # Get the most recent booking
+    return render(request, 'cleaning/user_profile.html', {'booking': booking})
+
 
 # User Logout View
 def logout_view(request):
