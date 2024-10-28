@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busy Bee Cleaning Co.</title>
+
+    <!-- Load static files -->
+    {% load static %}
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+            <ul class="centered-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home_services' %}">Services</a></li>
+                <li><a href="{% url 'home_about' %}">About Us</a></li>
+                <li><a href="{% url 'home_blog' %}">Blog</a></li> 
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="men_text">
+            <h1>Clear<span>View</span></h1><br><h2>"Cleaning Services"</h2>
+
+            <div class="main_image">
+                <img src="{% static 'images/girl-cleaning.png' %}">
+            </div>
+
+            <div class="text">
+                <p>
+                    Sayago Cleaning Inc. offers a range of cleaning services,  
+                    including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
+                    They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
+                    Specialty services include carpet and upholstery cleaning, window washing, 
+                    and eco-friendly green cleaning options. 
+                </p>
+            </div>
+
+            <!-- Book Now and Login Buttons -->
+            <div class="buttons">
+                <a href="{% url 'signup' %}" class="login-btn" id="loginBtn">Register now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include your JS file -->
+    <script src="{% static 'scripts/index.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sayago Cleaning Inc.</title>
+    <!-- Load static files -->
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/admin.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <!-- You can uncomment these as needed -->
+                    <!-- <li><a href="#">Manage Users</a></li>
+                    <li><a href="#">Reports</a></li> -->
+                    <li><a href="{% url 'login' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome to Admin Dashboard</h1>
+            </header>
+
+            <main>
+                <section class="admin-panel">
+                    <h2>Users Booking Data</h2>
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
+                                <th>Services</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- In Django, loop over the data using template tags -->
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.first_name }}</td>
+                                <td>{{ user.last_name }}</td>
+                                <td>{{ user.address }}</td>
+                                <td>{{ user.contact_number }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.city }}</td>
+                                <td>{{ user.services }}</td>
+                                <td>
+                                    <button class="delete-btn">Deny</button>
+                                    <button class="edit-btn">Accept</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sayago Cleaning Inc. Admin Dashboard</p>
+    </footer>
+    <script src="{% static 'scripts/admin_dash.js'%}"></script>
+</body>
+</html>

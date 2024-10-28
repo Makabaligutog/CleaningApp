@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busy Bee Cleaning Co.</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/blog.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="{% static 'image1/logo1.png' %}" class="logo" alt="logo">
+            <ul class="centered-menu">
+                <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+                <li><a href="{% url 'ad_services' %}">Services</a></li>
+                <li><a href="{% url 'ad_about' %}">About Us</a></li>
+                <li><a href="{% url 'ad_blog' %}">Blog</a></li> 
+            </ul>
+        </nav>
+        <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <a href="{% url 'ad_dashboard' %}">Admin Dashboard</a>
+        <!-- Other sidebar items can be added here -->
+    </div>
+
+    <main>
+        <h1>Add Service Review</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <h2>Customer Reviews</h2>
+        {% for review in reviews %}
+            <div class="review">
+                <h3>{{ review.customer_name }}</h3>
+                <p>Rating: {{ review.rating }} out of 5</p>
+                <p>{{ review.message }}</p>
+                {% if review.photo %}
+                    <img src="{{ review.photo.url }}" alt="Review Photo">
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No reviews available.</p>
+        {% endfor %}
+    </main>
+
+    <script src="{% static 'scripts/index.js' %}"></script>
+</body>
+</html>

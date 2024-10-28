@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: black;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: gray;
+    overflow: hidden;
+}
+
+/* Header styles */
+header {
+    background-color: #FFB300; /* Header color */
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* Center items in the header */
+    height: 150px;
+    position: relative; /* Allows positioning of contact info */
+}
+
+nav .logo {
+    position: absolute;
+    width: 130px;
+    cursor: pointer;
+    left: 150px;
+    top: 10px;
+}
+
+/* Button styling */
+.book-now {
+    background-color: #ff6f00; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.book-now:hover {
+    background-color: #e68a00; 
+}
+
+/* Login and Book Now Button */
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.login-btn {
+    text-decoration: none;
+    background-color: #ff9900;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #cc7a00;
+}
+
+/* Navigation styles */
+nav {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    padding-top: 70px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0; /* Added to reset default padding */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 60px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.centered-menu li a:hover {
+    color: darkorange;
+}
+
+.content {
+    margin-left: 30px;
+}
+
+.service-photo {
+    width: 100%; /* Adjust the width as needed */
+    max-width: 600px; /* Limits the image size */
+    height: auto;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease; /* Smooth transition for background fade */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+    animation: slideInUp 0.4s ease forwards; /* Apply animation */
+    opacity: 0; /* Initially hidden */
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Form container */
+form {
+    margin-top: 10px;
+    text-align: left; /* Align form elements to the left */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Reduce margin between fields */
+}
+
+/* Labels styling */
+.form-group label {
+    display: block;
+    margin-bottom: 6px; /* Reduce spacing between label and input */
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input fields styling */
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 8px; /* Reduce padding inside input fields */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px; /* Reduce font size for inputs */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #FFB300;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 179, 0, 0.3);
+}
+
+.form-group textarea {
+    height: 80px; /* Standard height for textarea */
+    resize: none;
+}
+
+/* Checkbox */
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Privacy policy link */
+.form-group a {
+    color: #FFB300;
+    text-decoration: none;
+}
+
+.form-group a:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.form-group button {
+    background-color: #FFB300;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.form-group button:hover {
+    background-color: #E68A00;
+}
+
+/* Thank You Message */
+.thank-you-message {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    color: green;
+    margin-top: 20px;
+}
+
+/* Animation for sliding and fading the modal content */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px); /* Start 100px below */
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        transform: translateY(0); /* Move into the view */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: flex-start; /* Align items to the left */
+    }
+    .book-now {
+        margin-top: 10px; /* Space above button on small screens */
+    }
+}
+
+/* General Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centered-menu {
+    list-style: none;
+    display: flex;
+}
+
+.centered-menu li {
+    margin: 0 10px;
+}
+
+/* Profile Icon Style */
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 65%;
+    margin-bottom: 30px;
+    border-radius: 50%; /* Makes it circular */
+}
+
+/* Sidebar Style */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #FFB300;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+/* Open Sidebar */
+.sidebar.open {
+    width: 250px;
+}
+
+/* Main Content Style */
+.main-content {
+    transition: margin-right 0.5s;
+    padding: 20px;
+}
+
+/* When Sidebar is Open */
+.main-content.sidebar-open {
+    margin-right: 250px; /* Adjusts to make space for the sidebar */
+}
+
+.men_text {
+    position: relative;
+    /* background-image: url('images/clean.jpeg');  Use your image as background */
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the background image */
+    height: 900px; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    text-align: center;
+    padding: 100px;
+    color: white; /* Ensure text is readable on the background */
+}
+
+.men_text h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Social Media Section */
+.social-media {
+    text-align: center; /* Center the content */
+    margin-top: 30px; /* Space above the section */
+}
+
+.social-media h3 {
+    font-size: 24px; /* Font size for the title */
+    margin-bottom: 15px; /* Space below the title */
+    color: white; /* Title color */
+}
+
+.social-icons {
+    display: flex; /* Align icons in a row */
+    justify-content: center; /* Center the icons */
+    gap: 20px; /* Space between icons */
+}
+
+.social-icon img {
+    width: 40px; /* Adjust icon size */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Add transition effect */
+}
+
+.social-icon img:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* Form Fields General Styles (if not already defined) */
+.form-group {
+    margin-bottom: 15px; /* Adjust spacing between fields */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #FFB300;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 179, 0, 0.3);
+}

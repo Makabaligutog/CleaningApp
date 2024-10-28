@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form method="POST" id="registerForm">
+            {% csrf_token %}
+        
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" class="form-control" value="{{ form.username.value|default:'' }}">
+                {{ form.username.errors }}
+            </div>
+        
+            <div class="form-group">
+                <label for="id_email">Email</label>
+                <input type="email" name="email" id="id_email" class="form-control" value="{{ form.email.value|default:'' }}">
+                {{ form.email.errors }}
+            </div>
+        
+            <div class="form-group">
+                <label for="id_password1">Password</label>
+                <input type="password" name="password1" id="id_password1" class="form-control">
+                {{ form.password1.errors }}
+            </div>
+        
+            <div class="form-group">
+                <label for="id_password2">Confirm Password</label>
+                <input type="password" name="password2" id="id_password2" class="form-control">
+                {{ form.password2.errors }}
+            </div>
+        
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+        <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+        
+    </div>
+</body>
+</html>
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form method="POST" id="registerForm">
+            {% csrf_token %}
+            <label>First Name:</label>
+            {{ form.first_name}}
+            <label>Last Name:</label>
+            {{ form.last_name}}
+            <label>Username</label>   
+            {{ form.username }}  
+            <label>Email</label>
+            {{form.email}}
+            <label> Password</label>
+            {{form.password1}}
+            <label>Confirm Password</label>
+            {{form.password2}}
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+        <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</body>
+</html> {% endcomment %}
