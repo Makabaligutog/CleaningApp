@@ -9,12 +9,13 @@
     {% load static %}
 
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}?10">
 </head>
 <body>
     <header>
         <nav>
             <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+            
             <ul class="centered-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'home_services' %}">Services</a></li>
@@ -25,14 +26,9 @@
         </nav>
     </header>
 
-    <div class="content">
-        <div class="men_text">
-            <h1>Clear<span>View</span></h1><br><h2>"Cleaning Services"</h2>
-
-            <div class="main_image">
-                <img src="{% static 'images/girl-cleaning.png' %}">
-            </div>
-
+        <div class="content">
+            <div class="men_text">
+            <br><h2>"Cleaning Services"</h2>
             <div class="text">
                 <p>
                     Sayago Cleaning Inc. offers a range of cleaning services,  

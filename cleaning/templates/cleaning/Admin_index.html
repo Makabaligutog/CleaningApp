@@ -34,6 +34,8 @@
                 <li><a href="{% url 'ad_services' %}">Services</a></li>
                 <li><a href="{% url 'ad_about' %}">About Us</a></li>
                 <li><a href="{% url 'ad_blog' %}">Blog</a></li> 
+                <li>{{ request.user.username }}</li> <!-- Fix: Make this a list item -->
+
             </ul>
         </nav>
         <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">

@@ -11,6 +11,8 @@ from .forms import RegisterForm, BookingForm
 from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse, HttpResponseForbidden
 from .forms import ServiceReviewForm
+from .forms import AdminSignupForm, AdminLoginForm
+
 
 from django.views import View
 #admin blog sa katong mag upload
@@ -135,6 +137,65 @@ def profile_view(request):
     booking = Booking.objects.filter(user=request.user).last()  # Get the most recent booking
     return render(request, 'cleaning/user_profile.html', {'booking': booking})
 
+#Admin dashboard
+def admin_dashboard(request):
+    bookings = Booking.objects.all(user=request.bookings)  # Fetch all bookings for admin dashboard
+    return render(request, 'cleaning/admin_dashboard.html', {'bookings': bookings})
+
+def update_booking_status(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        
+        if new_status:
+            booking.status = new_status
+            booking.save()
+            messages.success(request, 'Booking status updated successfully!')
+        else:
+            messages.error(request, 'Failed to update booking status. Please try again.')
+
+        return redirect('cleaning/admin_dashboard.html')
+
+    return redirect('cleaning/admin_dashboard.html')
+
+# Admin Login View
+def own_login(request):
+    if request.method == 'POST':
+        form = AdminLoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None and user.is_staff:
+                login(request, user)
+                return redirect('admin_homepage')  # Redirect to the admin dashboard
+            else:
+                messages.error(request, 'Invalid username or password.')
+    else:
+        form = AdminLoginForm()
+
+    return render(request, 'cleaning/admin_login.html', {'form': form})
+
+# Admin Signup View
+def own_signup(request):
+    if request.method == 'POST':
+        form = AdminSignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Admin account created successfully.')
+                return redirect('admin_signup')  # Redirect to the admin dashboard or any other page
+            else:
+                messages.error(request, 'Signup failed. Please try again.')
+    else:
+        form = AdminSignupForm()
+    
+    return render(request, 'cleaning/admin_signup.html', {'form': form})
 
 # User Logout View
 def logout_view(request):

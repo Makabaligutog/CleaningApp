@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Sayago Cleaning Inc.</title>
-    <!-- Load static files -->
-     {% load static %}
+    {% load static %}
     <link rel="stylesheet" href="{% static 'styles/admin.css' %}">
 </head>
 <body>
@@ -16,10 +15,7 @@
             <nav>
                 <ul>
                     <li><a href="#">Dashboard</a></li>
-                    <!-- You can uncomment these as needed -->
-                    <!-- <li><a href="#">Manage Users</a></li>
-                    <li><a href="#">Reports</a></li> -->
-                    <li><a href="{% url 'login' %}">Logout</a></li>
+                    <li><a href="{% url 'owner_login' %}">Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -37,26 +33,39 @@
                         <thead>
                             <tr>
                                 <th>Customer ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Contact Number</th>
                                 <th>Address</th>
                                 <th>Services</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- In Django, loop over the data using template tags -->
-                            {% for user in users %}
+                            {% for booking in bookings %}
                             <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.first_name }}</td>
-                                <td>{{ user.last_name }}</td>
-                                <td>{{ user.address }}</td>
-                                <td>{{ user.contact_number }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>{{ user.city }}</td>
-                                <td>{{ user.services }}</td>
+                                <td>{{ booking.user.id }}</td>
+                                <td>{{ booking.user.username }}</td>
+                                <td>{{ booking.user.email }}</td>
+                                <td>{{ booking.user.first_name }}</td>
+                                <td>{{ booking.user.last_name }}</td>
+                                <td>{{ booking.user.contact_number }}</td>
+                                <td>{{ booking.user.address }}</td>
+                                <td>{{ booking.cleaning_services }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'update_booking_status' booking.id %}">
+                                        {% csrf_token %}
+                                        <select name="status" onchange="this.form.submit()">
+                                            <option value="ongoing" {% if booking.status == 'ongoing' %}selected{% endif %}>Ongoing</option>
+                                            <option value="cancelled" {% if booking.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                                            <option value="finished" {% if booking.status == 'finished' %}selected{% endif %}>Finished</option>
+                                            <option value="unfinished" {% if booking.status == 'unfinished' %}selected{% endif %}>Unfinished</option>
+                                        </select>
+                                    </form>
+                                </td>
                                 <td>
                                     <button class="delete-btn">Deny</button>
                                     <button class="edit-btn">Accept</button>

@@ -106,6 +106,7 @@
     background-color: #78756b;
 }
 
+/* Button Styles */
 .delete-btn, .edit-btn {
     padding: 5px 10px;
     border: none;
@@ -123,6 +124,13 @@
 
 .delete-btn:hover, .edit-btn:hover {
     opacity: 0.8;
+}
+
+/* Status Select Dropdown */
+.user-table select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /* Footer */

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busy Bee Cleaning Co.</title>
-    <link rel="stylesheet" href="about.css">
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'styles/about.css'%}">
 </head>
 <body>
     <header>
@@ -13,10 +14,10 @@
         <nav>
             <img src="image1/logo1.png" class="logo" alt="logo">
             <ul class="centered-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="blog.html">Blog</a></li>   
+                <li><a href="{% url 'home'%}">Home</a></li>
+                <li><a href="{% url 'home_services' %}">Services</a></li>
+                <li><a href="{% url 'home_about' %}">About Us</a></li>
+                <li><a href="{% url 'home_blog' %}">Blog</a></li>  
             </ul>
         </nav>
     </header>

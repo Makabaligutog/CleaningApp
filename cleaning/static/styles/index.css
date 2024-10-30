@@ -9,7 +9,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: gray;
+    /* background-color: gray; */
     overflow: hidden;
 }
 
@@ -98,18 +98,15 @@ nav ul li a {
 }
 
 .content {
-    margin-left: 30px;
+    background-image: url("../images/noga.jpeg");
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    padding: 300px; /* Adds padding to the content */
+    color: white; /* Ensures the text is readable over the background */
 }
 
-.service-photo {
-    width: 100%; /* Adjust the width as needed */
-    max-width: 600px; /* Limits the image size */
-    height: auto;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 /* Modal styling */
 .modal {
@@ -333,20 +330,6 @@ nav {
     margin-right: 250px; /* Adjusts to make space for the sidebar */
 }
 
-.men_text {
-    position: relative;
-    /* background-image: url('images/clean.jpeg');  Use your image as background */
-    background-size: cover; /* Ensure the image covers the entire div */
-    background-position: center; /* Center the background image */
-    height: 900px; /* Adjust the height as needed */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
-    text-align: center;
-    padding: 100px;
-    color: white; /* Ensure text is readable on the background */
-}
 
 .men_text h2 {
     font-size: 32px;

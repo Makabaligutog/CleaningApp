@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Sayago Cleaning Inc.</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/admin_login.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>Admin Login</h1>
+        </header>
+        <main>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{% url 'owner_signup' %}">Signup here</a></p>
+        </main>
+    </div>
+</body>
+</html>
