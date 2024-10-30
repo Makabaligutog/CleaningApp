@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Booking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Booking - Busy Bee Cleaning Co.</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/update_booking.css' %}">
 </head>
 <body>
-    <h1>Update Your Booking</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update</button>
-    </form>
+    <!-- Main Content Section -->
+    <div class="update-container">
+        <h1>Update Your Booking</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn update-btn">Update Booking</button>
+                <a href="{% url 'u_home' %}" class="btn cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

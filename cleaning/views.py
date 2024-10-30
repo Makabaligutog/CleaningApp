@@ -113,7 +113,7 @@ class BookingUpdateView(UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = 'cleaning/booking_update.html'
-    success_url = reverse_lazy('profile_view')
+    success_url = reverse_lazy('user_profile')
 
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user)
@@ -123,7 +123,7 @@ class BookingUpdateView(UpdateView):
 class BookingDeleteView(DeleteView):
     model = Booking
     template_name = 'cleaning/booking_confirm_delete.html'
-    success_url = reverse_lazy('profile_view')
+    success_url = reverse_lazy('user_profile')
 
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user)
