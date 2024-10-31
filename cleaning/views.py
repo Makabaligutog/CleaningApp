@@ -138,8 +138,9 @@ def profile_view(request):
     return render(request, 'cleaning/user_profile.html', {'booking': booking})
 
 #Admin dashboard
+
 def admin_dashboard(request):
-    bookings = Booking.objects.all(user=request.bookings)  # Fetch all bookings for admin dashboard
+    bookings = Booking.objects.all() # Fetch all bookings for admin dashboard
     return render(request, 'cleaning/admin_dashboard.html', {'bookings': bookings})
 
 def update_booking_status(request, booking_id):
@@ -155,9 +156,9 @@ def update_booking_status(request, booking_id):
         else:
             messages.error(request, 'Failed to update booking status. Please try again.')
 
-        return redirect('cleaning/admin_dashboard.html')
+        return redirect('admin_dashboard')
 
-    return redirect('cleaning/admin_dashboard.html')
+    return redirect('admin_dashboard')
 
 # Admin Login View
 def own_login(request):
@@ -227,9 +228,6 @@ def admin_home(request):
     return render(request, 'cleaning/Admin_index.html', {'bookings': bookings})
 
 # Admin dashboard view
-@login_required
-def admin_dashboard(request):
-    return render(request, 'cleaning/admin_dashboard.html')
 
 # Admin services
 def admin_services(request):
