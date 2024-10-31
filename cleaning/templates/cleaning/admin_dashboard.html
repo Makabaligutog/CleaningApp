@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Sayago Cleaning Inc.</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin.css' %}?100">
 </head>
 <body>
     <div class="admin-container">
@@ -15,7 +15,9 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'ad_dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'ratings' %}">Ratings</a></li>
                     <li><a href="{% url 'owner_login' %}">Logout</a></li>
+                    
                 </ul>
             </nav>
         </aside>
@@ -67,8 +69,16 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <button class="delete-btn">Deny</button>
-                                        <button class="edit-btn">Accept</button>
+                                        <!-- Deny Button Form -->
+                                        <form method="POST" action="{% url 'deny_booking' booking.booking_id %}" class="action-form">
+                                            {% csrf_token %}
+                                            <button type="submit" class="action-btn delete-btn">Deny</button>
+                                        </form>
+                                        <!-- Accept Button Form -->
+                                        <form method="POST" action="{% url 'accept_booking' booking.booking_id %}" class="action-form">
+                                            {% csrf_token %}
+                                            <button type="submit" class="action-btn accept-btn">Accept</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 {% endfor %}

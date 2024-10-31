@@ -143,8 +143,9 @@ def admin_dashboard(request):
     bookings = Booking.objects.all() # Fetch all bookings for admin dashboard
     return render(request, 'cleaning/admin_dashboard.html', {'bookings': bookings})
 
+
 def update_booking_status(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
+    booking = get_object_or_404(Booking, booking_id=booking_id)
 
     if request.method == 'POST':
         new_status = request.POST.get('status')
@@ -156,9 +157,9 @@ def update_booking_status(request, booking_id):
         else:
             messages.error(request, 'Failed to update booking status. Please try again.')
 
-        return redirect('admin_dashboard')
+        return redirect('ad_dashboard')
 
-    return redirect('admin_dashboard')
+    return redirect('ad_dashboard')
 
 # Admin Login View
 def own_login(request):
@@ -198,6 +199,28 @@ def own_signup(request):
     
     return render(request, 'cleaning/admin_signup.html', {'form': form})
 
+#cancel ang booking
+def deny_booking(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    if request.method == 'POST':
+        booking.status = 'Pending'
+        booking.save()
+        messages.success(request, 'Booking denied successfully!')
+        
+    return redirect('ad_dashboard')
+#accept the booking
+def accept_booking(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    if request.method == 'POST':
+        booking.status = 'Accepted'
+        booking.save()
+        messages.success(request, 'Booking accepted successfully!')
+        
+    return redirect('ad_dashboard')
+
+
 # User Logout View
 def logout_view(request):
     logout(request)
@@ -227,7 +250,9 @@ def admin_home(request):
     bookings = Booking.objects.all()
     return render(request, 'cleaning/Admin_index.html', {'bookings': bookings})
 
-# Admin dashboard view
+# Admin ratings
+def admin_ratings(request):
+    return render(request, 'cleaning/ratings.html')
 
 # Admin services
 def admin_services(request):

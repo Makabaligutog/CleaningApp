@@ -19,6 +19,7 @@ urlpatterns = [
     path('user_service/', views.services, name='user_services'),
     path('user_about/', views.about, name='user_about'),
     path('user_blog/', views.blog, name='user_blog'),
+    path('profile/', views.profile_view, name='user_profile'),
     
     # Admin URLs
     path('owner/', views.admin_home, name='admin_homepage'),
@@ -26,9 +27,8 @@ urlpatterns = [
     path('admin_about/', views.admin_about, name='ad_about'),
     path('admin_blog/', views.admin_blog, name='ad_blog'),
     path('admin_dashboard/', views.admin_dashboard, name='ad_dashboard'),
-    
-    path('profile/', views.profile_view, name='user_profile'),
-    
+    path('ratings/', views.admin_ratings, name='ratings'),
+   
     
     path('booking/update/<int:pk>/', BookingUpdateView.as_view(), name='update_booking'),
     path('booking/delete/<int:pk>/', BookingDeleteView.as_view(), name='delete_booking'),
@@ -37,11 +37,16 @@ urlpatterns = [
     path('add_review/', views.add_review, name='add_review'),
     
     # admin book
-    path('admin/booking/update/<int:booking_id>/', views.update_booking_status, name='admin_update_booking'),
+    # path('admin/booking/update/<int:booking_id>/', views.update_booking_status, name='admin_update_booking'),
     path('update-booking-status/<int:booking_id>/', views.update_booking_status, name='update_booking_status'),
 
     
     # admin login and signup
     path('owner/signup/', views.own_signup, name='owner_signup'),
     path('owner/login/', views.own_login, name='owner_login'),
+    
+    #action
+    path('deny-booking/<int:booking_id>/', views.deny_booking, name='deny_booking'),
+    path('accept-booking/<int:booking_id>/', views.accept_booking, name='accept_booking'),
+
 ]
