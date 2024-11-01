@@ -3,368 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Ratings</title>
+    <title>Ratings - Sayago Cleaning Inc.</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/ratings.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/ratings.css' %}?100">
 </head>
 <body>
     <div class="admin-container">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <aside class="sidebar">
             <h2>Admin Dashboard</h2>
             <nav>
                 <ul>
+                    <li><a href="{% url 'admin_homepage' %}">Home</a></li>
                     <li><a href="{% url 'ad_dashboard' %}">Dashboard</a></li>
-                    <li><a href="{% url 'ratings' %}">Service Ratings</a></li>
-                    {% comment %} <li><a href="{% url 'view_bookings' %}">View Bookings</a></li>
-                    <li><a href="{% url 'user_management' %}">User Management</a></li> {% endcomment %}
+                    <li><a href="{% url 'ratings' %}">Ratings</a></li>
                     <li><a href="{% url 'owner_login' %}">Logout</a></li>
                 </ul>
             </nav>
-        </div>
+        </aside>
 
-        <!-- Main Content -->
+        <!-- Main Content Area -->
         <div class="main-content">
             <header>
-                <h1>Service Ratings</h1>
+                <h1>Service Ratings by Month</h1>
             </header>
 
-            <!-- Filter by Month -->
-            <div class="filter">
-                <label for="month">Filter by Month:</label>
-                <select id="month" onchange="filterByMonth()">
-                    <option value="all">All Months</option>
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                </select>
+            <div class="month-selector">
+                <form method="GET" action="{% url 'ratings' %}">
+                    <label for="month-dropdown">Select Month:</label>
+                    <select id="month-dropdown" name="month" onchange="this.form.submit()">
+                        <option value="">--All Months--</option>
+                        <option value="1" {% if selected_month == 1 %}selected{% endif %}>January</option>
+                        <option value="2" {% if selected_month == 2 %}selected{% endif %}>February</option>
+                        <option value="3" {% if selected_month == 3 %}selected{% endif %}>March</option>
+                        <option value="4" {% if selected_month == 4 %}selected{% endif %}>April</option>
+                        <option value="5" {% if selected_month == 5 %}selected{% endif %}>May</option>
+                        <option value="6" {% if selected_month == 6 %}selected{% endif %}>June</option>
+                        <option value="7" {% if selected_month == 7 %}selected{% endif %}>July</option>
+                        <option value="8" {% if selected_month == 8 %}selected{% endif %}>August</option>
+                        <option value="9" {% if selected_month == 9 %}selected{% endif %}>September</option>
+                        <option value="10" {% if selected_month == 10 %}selected{% endif %}>October</option>
+                        <option value="11" {% if selected_month == 11 %}selected{% endif %}>November</option>
+                        <option value="12" {% if selected_month == 12 %}selected{% endif %}>December</option>
+                    </select>
+                </form>
             </div>
 
-            <!-- Ratings Table -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Service</th>
-                        <th>January</th>
-                        <th>February</th>
-                        <th>March</th>
-                        <th>April</th>
-                        <th>May</th>
-                        <th>June</th>
-                        <th>July</th>
-                        <th>August</th>
-                        <th>September</th>
-                        <th>October</th>
-                        <th>November</th>
-                        <th>December</th>
-                    </tr>
-                </thead>
-                <tbody id="ratings-table">
-                    <tr>
-                        <td>Deep Cleaning</td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="deep-cleaning-january" id="deep-cleaning-january-5" value="5"><label for="deep-cleaning-january-5">★</label>
-                                <input type="radio" name="deep-cleaning-january" id="deep-cleaning-january-4" value="4"><label for="deep-cleaning-january-4">★</label>
-                                <input type="radio" name="deep-cleaning-january" id="deep-cleaning-january-3" value="3"><label for="deep-cleaning-january-3">★</label>
-                                <input type="radio" name="deep-cleaning-january" id="deep-cleaning-january-2" value="2"><label for="deep-cleaning-january-2">★</label>
-                                <input type="radio" name="deep-cleaning-january" id="deep-cleaning-january-1" value="1"><label for="deep-cleaning-january-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Window Washing</td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="window-washing-february" id="window-washing-february-5" value="5"><label for="window-washing-february-5">★</label>
-                                <input type="radio" name="window-washing-february" id="window-washing-february-4" value="4"><label for="window-washing-february-4">★</label>
-                                <input type="radio" name="window-washing-february" id="window-washing-february-3" value="3"><label for="window-washing-february-3">★</label>
-                                <input type="radio" name="window-washing-february" id="window-washing-february-2" value="2"><label for="window-washing-february-2">★</label>
-                                <input type="radio" name="window-washing-february" id="window-washing-february-1" value="1"><label for="window-washing-february-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Residential Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="residential-cleaning-march" id="residential-cleaning-march-5" value="5"><label for="residential-cleaning-march-5">★</label>
-                                <input type="radio" name="residential-cleaning-march" id="residential-cleaning-march-4" value="4"><label for="residential-cleaning-march-4">★</label>
-                                <input type="radio" name="residential-cleaning-march" id="residential-cleaning-march-3" value="3"><label for="residential-cleaning-march-3">★</label>
-                                <input type="radio" name="residential-cleaning-march" id="residential-cleaning-march-2" value="2"><label for="residential-cleaning-march-2">★</label>
-                                <input type="radio" name="residential-cleaning-march" id="residential-cleaning-march-1" value="1"><label for="residential-cleaning-march-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Commercial Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="commercial-cleaning-april" id="commercial-cleaning-april-5" value="5"><label for="commercial-cleaning-april-5">★</label>
-                                <input type="radio" name="commercial-cleaning-april" id="commercial-cleaning-april-4" value="4"><label for="commercial-cleaning-april-4">★</label>
-                                <input type="radio" name="commercial-cleaning-april" id="commercial-cleaning-april-3" value="3"><label for="commercial-cleaning-april-3">★</label>
-                                <input type="radio" name="commercial-cleaning-april" id="commercial-cleaning-april-2" value="2"><label for="commercial-cleaning-april-2">★</label>
-                                <input type="radio" name="commercial-cleaning-april" id="commercial-cleaning-april-1" value="1"><label for="commercial-cleaning-april-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Move-in/Move-out Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="move-in-out-cleaning-may" id="move-in-out-cleaning-may-5" value="5"><label for="move-in-out-cleaning-may-5">★</label>
-                                <input type="radio" name="move-in-out-cleaning-may" id="move-in-out-cleaning-may-4" value="4"><label for="move-in-out-cleaning-may-4">★</label>
-                                <input type="radio" name="move-in-out-cleaning-may" id="move-in-out-cleaning-may-3" value="3"><label for="move-in-out-cleaning-may-3">★</label>
-                                <input type="radio" name="move-in-out-cleaning-may" id="move-in-out-cleaning-may-2" value="2"><label for="move-in-out-cleaning-may-2">★</label>
-                                <input type="radio" name="move-in-out-cleaning-may" id="move-in-out-cleaning-may-1" value="1"><label for="move-in-out-cleaning-may-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Carpet Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="carpet-cleaning-june" id="carpet-cleaning-june-5" value="5"><label for="carpet-cleaning-june-5">★</label>
-                                <input type="radio" name="carpet-cleaning-june" id="carpet-cleaning-june-4" value="4"><label for="carpet-cleaning-june-4">★</label>
-                                <input type="radio" name="carpet-cleaning-june" id="carpet-cleaning-june-3" value="3"><label for="carpet-cleaning-june-3">★</label>
-                                <input type="radio" name="carpet-cleaning-june" id="carpet-cleaning-june-2" value="2"><label for="carpet-cleaning-june-2">★</label>
-                                <input type="radio" name="carpet-cleaning-june" id="carpet-cleaning-june-1" value="1"><label for="carpet-cleaning-june-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Upholstery Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="upholstery-cleaning-july" id="upholstery-cleaning-july-5" value="5"><label for="upholstery-cleaning-july-5">★</label>
-                                <input type="radio" name="upholstery-cleaning-july" id="upholstery-cleaning-july-4" value="4"><label for="upholstery-cleaning-july-4">★</label>
-                                <input type="radio" name="upholstery-cleaning-july" id="upholstery-cleaning-july-3" value="3"><label for="upholstery-cleaning-july-3">★</label>
-                                <input type="radio" name="upholstery-cleaning-july" id="upholstery-cleaning-july-2" value="2"><label for="upholstery-cleaning-july-2">★</label>
-                                <input type="radio" name="upholstery-cleaning-july" id="upholstery-cleaning-july-1" value="1"><label for="upholstery-cleaning-july-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Eco-friendly Green Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="eco-friendly-cleaning-august" id="eco-friendly-cleaning-august-5" value="5"><label for="eco-friendly-cleaning-august-5">★</label>
-                                <input type="radio" name="eco-friendly-cleaning-august" id="eco-friendly-cleaning-august-4" value="4"><label for="eco-friendly-cleaning-august-4">★</label>
-                                <input type="radio" name="eco-friendly-cleaning-august" id="eco-friendly-cleaning-august-3" value="3"><label for="eco-friendly-cleaning-august-3">★</label>
-                                <input type="radio" name="eco-friendly-cleaning-august" id="eco-friendly-cleaning-august-2" value="2"><label for="eco-friendly-cleaning-august-2">★</label>
-                                <input type="radio" name="eco-friendly-cleaning-august" id="eco-friendly-cleaning-august-1" value="1"><label for="eco-friendly-cleaning-august-1">★</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Residential Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="residential-cleaning-november" id="residential-cleaning-november-5" value="5"><label for="residential-cleaning-november-5">★</label>
-                                <input type="radio" name="residential-cleaning-november" id="residential-cleaning-november-4" value="4"><label for="residential-cleaning-november-4">★</label>
-                                <input type="radio" name="residential-cleaning-november" id="residential-cleaning-november-3" value="3"><label for="residential-cleaning-november-3">★</label>
-                                <input type="radio" name="residential-cleaning-november" id="residential-cleaning-november-2" value="2"><label for="residential-cleaning-november-2">★</label>
-                                <input type="radio" name="residential-cleaning-november" id="residential-cleaning-november-1" value="1"><label for="residential-cleaning-november-1">★</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="residential-cleaning-december" id="residential-cleaning-december-5" value="5"><label for="residential-cleaning-december-5">★</label>
-                                <input type="radio" name="residential-cleaning-december" id="residential-cleaning-december-4" value="4"><label for="residential-cleaning-december-4">★</label>
-                                <input type="radio" name="residential-cleaning-december" id="residential-cleaning-december-3" value="3"><label for="residential-cleaning-december-3">★</label>
-                                <input type="radio" name="residential-cleaning-december" id="residential-cleaning-december-2" value="2"><label for="residential-cleaning-december-2">★</label>
-                                <input type="radio" name="residential-cleaning-december" id="residential-cleaning-december-1" value="1"><label for="residential-cleaning-december-1">★</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Commercial Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="commercial-cleaning-november" id="commercial-cleaning-november-5" value="5"><label for="commercial-cleaning-november-5">★</label>
-                                <input type="radio" name="commercial-cleaning-november" id="commercial-cleaning-november-4" value="4"><label for="commercial-cleaning-november-4">★</label>
-                                <input type="radio" name="commercial-cleaning-november" id="commercial-cleaning-november-3" value="3"><label for="commercial-cleaning-november-3">★</label>
-                                <input type="radio" name="commercial-cleaning-november" id="commercial-cleaning-november-2" value="2"><label for="commercial-cleaning-november-2">★</label>
-                                <input type="radio" name="commercial-cleaning-november" id="commercial-cleaning-november-1" value="1"><label for="commercial-cleaning-november-1">★</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="commercial-cleaning-december" id="commercial-cleaning-december-5" value="5"><label for="commercial-cleaning-december-5">★</label>
-                                <input type="radio" name="commercial-cleaning-december" id="commercial-cleaning-december-4" value="4"><label for="commercial-cleaning-december-4">★</label>
-                                <input type="radio" name="commercial-cleaning-december" id="commercial-cleaning-december-3" value="3"><label for="commercial-cleaning-december-3">★</label>
-                                <input type="radio" name="commercial-cleaning-december" id="commercial-cleaning-december-2" value="2"><label for="commercial-cleaning-december-2">★</label>
-                                <input type="radio" name="commercial-cleaning-december" id="commercial-cleaning-december-1" value="1"><label for="commercial-cleaning-december-1">★</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Window Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="window-cleaning-november" id="window-cleaning-november-5" value="5"><label for="window-cleaning-november-5">★</label>
-                                <input type="radio" name="window-cleaning-november" id="window-cleaning-november-4" value="4"><label for="window-cleaning-november-4">★</label>
-                                <input type="radio" name="window-cleaning-november" id="window-cleaning-november-3" value="3"><label for="window-cleaning-november-3">★</label>
-                                <input type="radio" name="window-cleaning-november" id="window-cleaning-november-2" value="2"><label for="window-cleaning-november-2">★</label>
-                                <input type="radio" name="window-cleaning-november" id="window-cleaning-november-1" value="1"><label for="window-cleaning-november-1">★</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="window-cleaning-december" id="window-cleaning-december-5" value="5"><label for="window-cleaning-december-5">★</label>
-                                <input type="radio" name="window-cleaning-december" id="window-cleaning-december-4" value="4"><label for="window-cleaning-december-4">★</label>
-                                <input type="radio" name="window-cleaning-december" id="window-cleaning-december-3" value="3"><label for="window-cleaning-december-3">★</label>
-                                <input type="radio" name="window-cleaning-december" id="window-cleaning-december-2" value="2"><label for="window-cleaning-december-2">★</label>
-                                <input type="radio" name="window-cleaning-december" id="window-cleaning-december-1" value="1"><label for="window-cleaning-december-1">★</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Post-Renovation Cleaning</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="post-renovation-cleaning-november" id="post-renovation-cleaning-november-5" value="5"><label for="post-renovation-cleaning-november-5">★</label>
-                                <input type="radio" name="post-renovation-cleaning-november" id="post-renovation-cleaning-november-4" value="4"><label for="post-renovation-cleaning-november-4">★</label>
-                                <input type="radio" name="post-renovation-cleaning-november" id="post-renovation-cleaning-november-3" value="3"><label for="post-renovation-cleaning-november-3">★</label>
-                                <input type="radio" name="post-renovation-cleaning-november" id="post-renovation-cleaning-november-2" value="2"><label for="post-renovation-cleaning-november-2">★</label>
-                                <input type="radio" name="post-renovation-cleaning-november" id="post-renovation-cleaning-november-1" value="1"><label for="post-renovation-cleaning-november-1">★</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="star-rating">
-                                <input type="radio" name="post-renovation-cleaning-december" id="post-renovation-cleaning-december-5" value="5"><label for="post-renovation-cleaning-december-5">★</label>
-                                <input type="radio" name="post-renovation-cleaning-december" id="post-renovation-cleaning-december-4" value="4"><label for="post-renovation-cleaning-december-4">★</label>
-                                <input type="radio" name="post-renovation-cleaning-december" id="post-renovation-cleaning-december-3" value="3"><label for="post-renovation-cleaning-december-3">★</label>
-                                <input type="radio" name="post-renovation-cleaning-december" id="post-renovation-cleaning-december-2" value="2"><label for="post-renovation-cleaning-december-2">★</label>
-                                <input type="radio" name="post-renovation-cleaning-december" id="post-renovation-cleaning-december-1" value="1"><label for="post-renovation-cleaning-december-1">★</label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <main>
+                <section class="admin-panel">
+                    <h2>Monthly Ratings Table</h2>
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Month</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rating in ratings %}
+                                <tr>
+                                    <td>{{ rating.service_name }}</td>
+                                    <td>{{ rating.month }}</td>
+                                    <td class="rating">{{ rating.rating }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3">No ratings available for this month.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            </main>
         </div>
     </div>
-</div>
+
+    <footer>
+        <p>&copy; 2024 Sayago Cleaning Inc. Admin Dashboard</p>
+    </footer>
+    <script src="{% static 'scripts/admin_dash.js'%}"></script>
+</body>
+</html>

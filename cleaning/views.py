@@ -12,6 +12,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse, HttpResponseForbidden
 from .forms import ServiceReviewForm
 from .forms import AdminSignupForm, AdminLoginForm
+from .models import ServiceRating
+from datetime import datetime
+from calendar import month_name
 
 
 from django.views import View
@@ -251,6 +254,40 @@ def admin_home(request):
     return render(request, 'cleaning/Admin_index.html', {'bookings': bookings})
 
 # Admin ratings
+def ratings_by_month(request):
+    # Get the current month and next month names
+    current_month = datetime.now().month
+    next_month = (current_month % 12) + 1  # Simple calculation for next month
+    months = {i: month_name[i] for i in range(1, 13)}  # Dictionary of month names
+
+    # Default to the current month
+    selected_month = request.GET.get('month', current_month)
+
+    # Get ratings for the selected month
+    ratings = ServiceRating.objects.filter(month=months[int(selected_month)])
+
+    return render(request, 'ratings_list.html', {
+        'ratings': ratings,
+        'months': months,
+        'selected_month': selected_month,
+    })
+
+def ratings_view(request):
+    # Get the selected month from the query parameters
+    selected_month = request.GET.get('month', None)
+    
+    # Fetch ratings based on the selected month
+    if selected_month:
+        ratings = ServiceRating.objects.filter(month=selected_month)
+    else:
+        ratings = ServiceRating.objects.all()
+
+    context = {
+        'ratings': ratings,
+        'selected_month': selected_month,
+    }
+
+    return render(request, 'ratings.html', context)
 def admin_ratings(request):
     return render(request, 'cleaning/ratings.html')
 

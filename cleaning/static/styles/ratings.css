@@ -150,83 +150,25 @@ footer {
     left: 250px;
 }
 
-/* Ratings Container */
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Rating Styles */
+.rating {
+    font-size: 18px; /* Adjust the font size as needed */
 }
-
-/* Filter Section */
-.filter {
-    margin-bottom: 20px;
-}
-
-/* Ratings Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th, table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
-
-table thead {
-    background-color: #333;
-    color: #fff;
-}
-
-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tbody tr:hover {
-    background-color: #dcdcdc;
-}
-
-/* Star Rating Styles */
-.star-rating {
+/* Month Selector Styling */
+.month-selector {
+    margin: 20px 0; /* Space between header and dropdown */
     display: flex;
-    direction: row-reverse; /* Allows stars to fill from right to left */
-    justify-content: flex-end; /* Align stars to the right */
+    align-items: center; /* Center align dropdown */
 }
 
-.star-rating input {
-    display: none; /* Hide radio buttons */
+.month-selector label {
+    margin-right: 10px; /* Space between label and dropdown */
+    font-weight: bold; /* Make the label bold */
 }
 
-.star-rating label {
-    font-size: 24px;
-    color: #ccc; /* Color for unselected stars */
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.star-rating input:checked ~ label {
-    color: #f39c12; /* Color for selected stars */
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-    color: #f39c12; /* Color for hovered stars */
-}
-
-/* Optional Adjustments for Responsiveness */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 200px; /* Adjust sidebar width */
-    }
-
-    .main-content {
-        margin-left: 200px; /* Adjust main content margin */
-    }
-
-    footer {
-        width: calc(100% - 200px); /* Adjust footer width */
-        left: 200px; /* Adjust footer left position */
-    }
+.month-selector select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Font size for dropdown */
 }
