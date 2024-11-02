@@ -1,135 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
+    <title>Busy Bee Cleaning Co.</title>
     {% load static %}
-
-    <link rel="stylesheet" href="{% static 'styles/services.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'styles/services.css' %}?111 ">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' /> 
 </head>
 <body>
     <header>
+        
         <nav>
-            <img src="image1/logo1.png" class="logo" alt="logo">
+            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
-                <li><a href="{% url 'user_services' %}">Services</a></li> 
+                <li><a href="{% url 'user_services' %}">Services</a></li>
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
-                <li><a href="{% url 'user_blog' %}">Blog</a></li> 
-                {{ request.user.username }}</p>
+                <li><a href="{% url 'user_blog' %}">Blog</a></li>
             </ul>
-            <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
     </header>
+    <header>
+        <!-- Existing header content here -->
+    </header>
+    
+    <div class="hero-section">
+        <img src="{% static 'images/noga.jpeg' %}" alt="Cleaning Service" class="hero-image">
+        <div class="hero-text">
+            <h1>Every nook and cranny?
+                We got you!</h1>            
+            <p>Experience Sayago's Cleaning Co.'s most rated deep cleaning process
+            </p>
+        </div>
+    </div>    
 
-    <div id="sidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-        <a href="client_table.html">User Profile</a>
-        <a href="#"></a>
-        <a href="login.html">Logout</a>
-    </div>
-
-    <section id="services" class="services-section">
-        <div class="container">
+    <section id="services" class="services-section"></section>
             <h2 class="section-subtitle">Our Services</h2>
             <h1 class="section-title">We've got what you need!</h1>
             <div class="services-grid">
                 <!-- Existing Services -->
                 <div class="service-card">
-                    <img src="images/service1.jpg" alt="Anti-Bacterial Mist Treatment" class="service-image">
+                    <img src="{% static 'images/services1.jpg' %}" alt="Anti-Bacterial Mist Treatment" class="service-image">
                     <div class="service-content">
                         <h3>Anti-Bacterial Mist Treatment</h3>
                         <p>Always best after deep cleaning service to complete the whole process with 360-degree cleaning. Best for killing germs and bacteria within the area. Bacteria that can cause you flu, asthma, and allergies.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="calendar.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
+
                 <div class="service-card">
-                    <img src="images/service2.jpg" alt="Car Interior Detailing" class="service-image">
+                    <img src="{% static 'images/services2.jpg' %}" alt="Car Interior Detailing" class="service-image">
                     <div class="service-content">
                         <h3>Car Interior Detailing</h3>
                         <p>Detailing a car interior involves a deep cleaning of the car's cabin. Various materials, high-technology machines, and patented solutions have been used on vehicle interiors to give it its revamped look and new aroma.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="placeholder.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
                 
                 <!-- Additional Services -->
                 <div class="service-card">
-                    <img src="images/service3.jpg" alt="Deep Dry Cleaning" class="service-image">
+                    <img src="{% static 'images/services3.jpg' %}" alt="Deep Dry Cleaning" class="service-image">
                     <div class="service-content">
                         <h3>Deep Dry Cleaning</h3>
                         <p>Keep your mattress/sofas clean, dry vacuumed, and scented all the time. Savor the comfort each time. Best for linen/leather sofa, mattress, and removal of dirt, mites, and residue on targeted areas.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="placeholder.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="images/service4.jpg" alt="Deep Home Cleaning" class="service-image">
+                    <img src="{% static 'images/services4.jpg' %}" alt="Deep Home Cleaning" class="service-image">
                     <div class="service-content">
                         <h3>Deep Home Cleaning</h3>
                         <p>In a nutshell, almost every nook and cranny of your home will get special attention with an extensive routine of deep cleaning, from sweeping, brooming, and vacuuming of floors, wiping of areas.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="placeholder.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="images/service5.jpg" alt="Deep Upholstery Shampooing" class="service-image">
+                    <img src="{% static 'images/logo1.png' %}" alt="Deep Upholstery Shampooing" class="service-image">
                     <div class="service-content">
                         <h3>Deep Upholstery Shampooing</h3>
                         <p>Don’t let the dirt cling to your sofas/mattresses. It’s time to shampoo those long-due stains and marks. Involves shampooing and application of effective and efficient cleaning solutions in targeted areas.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="placeholder.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="images/service6.jpg" alt="Superior Steam Sterilization" class="service-image">
+                    <img src="{% static 'images/logo1.png' %}" alt="Superior Steam Sterilization" class="service-image">
                     <div class="service-content">
                         <h3>Superior Steam Sterilization</h3>
                         <p>Pamper your home and fabrics with the most traditional way of removing stubborn dirt within cloth and even germs. It is very effective when bed bugs are on the surfaces of items and can be effective up to 3/4" into fabrics surfaces.</p>
-                        <div class="buttons">
-                            <a href="placeholder.html" class="service-button">Learn More</a>
-                            <a href="placeholder.html" class="icon-button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </div>
+                        <a href="#" class="service-button">Learn More</a>
                     </div>
                 </div>
-            </div>
-        </div>
+                
+            </div> 
     </section>
-    <script src="user_services.js"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar.style.display === "block") {
-                sidebar.style.display = "none";
-            } else {
-                sidebar.style.display = "block";
-            }
-        }
-    </script>
+     <!-- Calendar Section -->
+     <div id="calendar-section">
+        <div class="calendar-header">
+            <h2>Calendar Bookings</h2>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src="{% static 'scripts/user_services.js'%}"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+
 </body>
 </html>

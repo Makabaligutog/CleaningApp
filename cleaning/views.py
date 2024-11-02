@@ -17,6 +17,8 @@ from datetime import datetime
 from calendar import month_name
 
 
+
+
 from django.views import View
 #admin blog sa katong mag upload
 from .models import ServiceReview
@@ -207,7 +209,7 @@ def deny_booking(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id)
 
     if request.method == 'POST':
-        booking.status = 'Pending'
+        booking.status = 'Cancelled'
         booking.save()
         messages.success(request, 'Booking denied successfully!')
         
@@ -222,6 +224,35 @@ def accept_booking(request, booking_id):
         messages.success(request, 'Booking accepted successfully!')
         
     return redirect('ad_dashboard')
+
+
+#services ratings
+def save_ratings(request):
+    if request.method == "POST":
+        for service, _ in ServiceRating.SERVICE_CHOICES:
+            for month in [
+                'January', 'February', 'March', 'April', 'May', 'June', 
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ]:
+                # Get the input value
+                rating_key = f"ratings_{service}_{month}"
+                rating_value = request.POST.get(rating_key)
+                
+                # If there's a value, proceed with save/update
+                if rating_value:
+                    rating_value = int(rating_value)  # Convert to integer
+                    rating_obj, created = ServiceRating.objects.update_or_create(
+                        service_name=service, 
+                        month=month,
+                        defaults={'rating': rating_value}
+                    )
+        # Redirect back to the ratings view
+        return redirect('ratings')
+
+    # If not POST, redirect to ratings page
+    return redirect('ratings')
+
+
 
 
 # User Logout View
@@ -253,42 +284,9 @@ def admin_home(request):
     bookings = Booking.objects.all()
     return render(request, 'cleaning/Admin_index.html', {'bookings': bookings})
 
+
 # Admin ratings
-def ratings_by_month(request):
-    # Get the current month and next month names
-    current_month = datetime.now().month
-    next_month = (current_month % 12) + 1  # Simple calculation for next month
-    months = {i: month_name[i] for i in range(1, 13)}  # Dictionary of month names
-
-    # Default to the current month
-    selected_month = request.GET.get('month', current_month)
-
-    # Get ratings for the selected month
-    ratings = ServiceRating.objects.filter(month=months[int(selected_month)])
-
-    return render(request, 'ratings_list.html', {
-        'ratings': ratings,
-        'months': months,
-        'selected_month': selected_month,
-    })
-
 def ratings_view(request):
-    # Get the selected month from the query parameters
-    selected_month = request.GET.get('month', None)
-    
-    # Fetch ratings based on the selected month
-    if selected_month:
-        ratings = ServiceRating.objects.filter(month=selected_month)
-    else:
-        ratings = ServiceRating.objects.all()
-
-    context = {
-        'ratings': ratings,
-        'selected_month': selected_month,
-    }
-
-    return render(request, 'ratings.html', context)
-def admin_ratings(request):
     return render(request, 'cleaning/ratings.html')
 
 # Admin services

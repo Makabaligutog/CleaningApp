@@ -115,13 +115,13 @@ nav ul.centered-menu li {
 .section-subtitle {
     color: #666;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 30px;
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
 
 .section-title {
-    font-size: 36px;
+    font-size: 60px;
     font-weight: bold;
     color: #D35400; /* Adjust the color to match your theme */
     margin-bottom: 40px;
@@ -130,19 +130,20 @@ nav ul.centered-menu li {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 20px; /* Spacing between cards */
-    padding: 20px;
+    gap:15px; /* Spacing between cards */
 }
 /* Service Card */
 .service-card {
+    margin-left: 15px;
+    margin-right: 15px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #FFC107;
     border-radius: 15px; /* Rounds the corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for a subtle 3D effect */
     overflow: hidden;
     transition: transform 0.3s ease;
+    
 }
 
 .service-card:hover {
@@ -163,6 +164,7 @@ nav ul.centered-menu li {
     text-align: left;
     color: #333;
     width: 100%;
+    font-weight: bold;
 }
 
 .service-content h3 {
@@ -356,3 +358,41 @@ nav {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+   /* Centering the calendar */
+   #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.calendar-header {
+    text-align: center;
+    margin: 20px 0;
+}
+/* Padding for the calendar section */
+#calendar-section {
+    padding: 40px 0; /* Adjust the top and bottom padding as needed */
+}
+
+/* Custom button styles for the calendar */
+.fc-button {
+    background-color: #D35400 !important; /* Change to your desired background color */
+    color: white !important; /* Change to your desired text color */
+    border: none !important; /* Remove default border */
+    padding: 10px 15px !important; /* Add some padding */
+    border-radius: 5px !important; /* Add rounded corners */
+    font-weight: bold; /* Make text bold */
+    padding-right: 15px;
+}
+
+.fc-button:hover {
+    background-color: #B03A2E !important; /* Change on hover */
+}
+
+.fc-button:focus {
+    outline: none !important; /* Remove focus outline */
+}
+.fc-direction-ltr .fc-button-group>.fc-button:not(:first-child) {
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-right: 5px;
+}

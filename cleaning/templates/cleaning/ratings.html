@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ratings - Sayago Cleaning Inc.</title>
+    <title>Admin Panel - Service Ratings</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/ratings.css' %}?100">
+    <link rel="stylesheet" href="{% static 'styles/ratings.css' %}">
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h2>Admin Dashboard</h2>
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
             <nav>
                 <ul>
                     <li><a href="{% url 'admin_homepage' %}">Home</a></li>
@@ -20,68 +19,161 @@
                     <li><a href="{% url 'owner_login' %}">Logout</a></li>
                 </ul>
             </nav>
-        </aside>
-
-        <!-- Main Content Area -->
+        </div>
+        
         <div class="main-content">
             <header>
-                <h1>Service Ratings by Month</h1>
+                <h1>Service Ratings</h1>
             </header>
-
-            <div class="month-selector">
-                <form method="GET" action="{% url 'ratings' %}">
-                    <label for="month-dropdown">Select Month:</label>
-                    <select id="month-dropdown" name="month" onchange="this.form.submit()">
-                        <option value="">--All Months--</option>
-                        <option value="1" {% if selected_month == 1 %}selected{% endif %}>January</option>
-                        <option value="2" {% if selected_month == 2 %}selected{% endif %}>February</option>
-                        <option value="3" {% if selected_month == 3 %}selected{% endif %}>March</option>
-                        <option value="4" {% if selected_month == 4 %}selected{% endif %}>April</option>
-                        <option value="5" {% if selected_month == 5 %}selected{% endif %}>May</option>
-                        <option value="6" {% if selected_month == 6 %}selected{% endif %}>June</option>
-                        <option value="7" {% if selected_month == 7 %}selected{% endif %}>July</option>
-                        <option value="8" {% if selected_month == 8 %}selected{% endif %}>August</option>
-                        <option value="9" {% if selected_month == 9 %}selected{% endif %}>September</option>
-                        <option value="10" {% if selected_month == 10 %}selected{% endif %}>October</option>
-                        <option value="11" {% if selected_month == 11 %}selected{% endif %}>November</option>
-                        <option value="12" {% if selected_month == 12 %}selected{% endif %}>December</option>
-                    </select>
-                </form>
+            <div class="admin-panel">
+                <h2>Services Ratings    </h2>
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>January</th>
+                            <th>February</th>
+                            <th>March</th>
+                            <th>April</th>
+                            <th>May</th>
+                            <th>June</th>
+                            <th>July</th>
+                            <th>August</th>
+                            <th>September</th>
+                            <th>October</th>
+                            <th>November</th>
+                            <th>December</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Residential Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Commercial Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Deep Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Move-in/Move-out Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Carpet Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Upholstery Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Window Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Eco-friendly Green Cleaning</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <main>
-                <section class="admin-panel">
-                    <h2>Monthly Ratings Table</h2>
-                    <table class="user-table">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Month</th>
-                                <th>Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for rating in ratings %}
-                                <tr>
-                                    <td>{{ rating.service_name }}</td>
-                                    <td>{{ rating.month }}</td>
-                                    <td class="rating">{{ rating.rating }}</td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td colspan="3">No ratings available for this month.</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </section>
-            </main>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Sayago Cleaning Inc. Admin Dashboard</p>
+        &copy; 2024 Sayago Cleaning Services Inc. All rights reserved.
     </footer>
-    <script src="{% static 'scripts/admin_dash.js'%}"></script>
 </body>
 </html>

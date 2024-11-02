@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 from .views import BookingUpdateView, BookingDeleteView, create_booking_views
 from .views import add_review
-from .views import ratings_by_month
 from django.conf import settings
 from django.conf.urls.static import static 
 
@@ -27,8 +26,9 @@ urlpatterns = [
     path('admin_about/', views.admin_about, name='ad_about'),
     path('admin_blog/', views.admin_blog, name='ad_blog'),
     path('admin_dashboard/', views.admin_dashboard, name='ad_dashboard'),
-    path('ratings/', views.admin_ratings, name='ratings'),
-    path('ratings/', ratings_by_month, name='ratings_by_month'),
+    path('ratings/', views.ratings_view, name='ratings'),
+    path('save_ratings/', views.save_ratings, name='save_ratings'),
+
     
     path('booking/update/<int:pk>/', BookingUpdateView.as_view(), name='update_booking'),
     path('booking/delete/<int:pk>/', BookingDeleteView.as_view(), name='delete_booking'),
