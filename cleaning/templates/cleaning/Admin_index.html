@@ -28,13 +28,12 @@
 <body>
     <header>
         <nav>
-            <img src="{% static 'image1/logo1.png' %}" class="logo" alt="logo">
+            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
             <ul class="centered-menu">
                 <li><a href="{% url 'admin_homepage' %}">Home</a></li>
                 <li><a href="{% url 'ad_services' %}">Services</a></li>
                 <li><a href="{% url 'ad_about' %}">About Us</a></li>
                 <li><a href="{% url 'ad_blog' %}">Blog</a></li> 
-                <li>Welcome Admin@{{ request.user.username }}</li> <!-- Fix: Make this a list item -->
 
             </ul>
             <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
@@ -44,8 +43,8 @@
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
         <a href="{% url 'ad_dashboard' %}">Admin Dashboard</a>
-        {% comment %}<a href="{% url 'admin_about' %}"></a>
-        <a href="loginAdmin.html">Logout</a> {% endcomment %}
+        <a href="{% url 'owner_login' %}">Sign Out</a>
+
     </div>
     
     <div class="content">

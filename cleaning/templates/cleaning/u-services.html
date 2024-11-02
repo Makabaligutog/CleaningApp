@@ -13,8 +13,11 @@
     <header>
         
         <nav>
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-            <ul class="centered-menu">
+            <div class="logo-title-container">
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+            </div>
+                <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'user_services' %}">Services</a></li>
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
@@ -22,9 +25,9 @@
             </ul>
         </nav>
     </header>
-    <header>
-        <!-- Existing header content here -->
-    </header>
+    <img src="{% static 'images/icon.jpg' %}" alt="Cleaning Service" class="profile-icon">
+
+ 
     
     <div class="hero-section">
         <img src="{% static 'images/noga.jpeg' %}" alt="Cleaning Service" class="hero-image">

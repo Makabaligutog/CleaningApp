@@ -13,7 +13,7 @@
     <header>
         
         <nav>
-            <img src="image1/logo1.png" class="logo" alt="logo">
+            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'user_services' %}">Services</a></li> 
@@ -21,7 +21,7 @@
                 <li><a href="{% url 'user_blog' %}">Blog</a></li> 
                 {{ request.user.username }}</p>
             </ul>
-            <img src="/images/icon.jpg" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
+            <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
     </header>
     <div id="sidebar" class="sidebar">
