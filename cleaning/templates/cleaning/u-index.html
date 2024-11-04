@@ -13,14 +13,17 @@
     <!-- Navigation Bar -->
     <header>
         <nav>
-            <!-- Logo -->
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="Busy Bee Cleaning Co. Logo">
+            {% comment %} <div class="logo-title-container">
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+            </div> {% endcomment %}
+            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'user_services' %}">Services</a></li> 
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
                 <li><a href="{% url 'user_blog' %}">Blog</a></li> 
-                <li>{{ request.user.email }}</li> <!-- Fix: Make this a list item -->
             </ul>
             <!-- Profile icon triggers a sidebar -->
             <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
