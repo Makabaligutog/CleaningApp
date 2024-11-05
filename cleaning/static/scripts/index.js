@@ -1,45 +1,39 @@
-// Get elements
-const bookingModal = document.getElementById('bookingModal');
-const bookNowBtn = document.getElementById('bookNowBtn');
-const closeModal = document.getElementById('closeModal');
-const bookingForm = document.getElementById('bookingForm');
-const thankYouMessage = document.getElementById('thankYouMessage');
-
-// Show the modal when 'Book Now' is clicked
-bookNowBtn.onclick = function() {
-    bookingModal.style.display = 'flex'; // Show the modal
-    setTimeout(() => {
-        bookingModal.classList.add('show'); // Trigger fade-in effect
-        // Make modal content visible
-        const modalContent = bookingModal.querySelector('.modal-content');
-        modalContent.style.opacity = 1;
-        modalContent.style.transform = 'translateY(0)';
-    }, 10); // Small delay for CSS transition
+  // Toggle Sidebar
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
 }
 
-// Close the modal when 'X' is clicked
-closeModal.onclick = function() {
-    const modalContent = bookingModal.querySelector('.modal-content');
-    modalContent.style.opacity = 0; // Fade out effect
-    modalContent.style.transform = 'translateY(100px)'; // Slide down
-    bookingModal.classList.remove('show'); // Trigger fade-out effect
-    setTimeout(() => {
-        bookingModal.style.display = 'none'; // Hide the modal
-    }, 400); // Match animation duration
+// Toggle Modal
+function toggleModal() {
+    const modal = document.getElementById("bookingModal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
 }
 
-// Hide modal when clicking outside the content
+// Close Modal when clicking the 'x' or outside of the modal
+document.getElementById("closeModal").onclick = function() {
+    toggleModal();
+}
+
 window.onclick = function(event) {
-    if (event.target === bookingModal) {
-        closeModal.onclick(); // Reuse close function
+    const modal = document.getElementById("bookingModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
 }
 
-// Form submission logic
-bookingForm.onsubmit = function(event) {
-    event.preventDefault(); // Prevent actual form submission
+// Form Submission
+document.getElementById("bookingForm").onsubmit = function(event) {
+    event.preventDefault(); // Prevent form from submitting traditionally
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    thankYouMessage.style.display = "block";
+    setTimeout(() => {
+        thankYouMessage.style.display = "none";
+        toggleModal(); // Close modal after showing thank you message
+    }, 3000); // Hide message after 3 seconds
+}
 
-    // Hide form and show thank you message
-    bookingForm.style.display = 'none';
-    thankYouMessage.style.display = 'block';
+// Book Now button opens the modal
+document.getElementById("bookNowBtn").onclick = function() {
+    toggleModal();
 }
