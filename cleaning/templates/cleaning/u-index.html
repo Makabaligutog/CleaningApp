@@ -3,117 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busy Bee Cleaning Co. - User Homepage</title>
-    <!-- Link to your CSS file -->
+    <title>Busy Bee Cleaning Co.</title>
+
+    <!-- Load static files -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}?100">
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}?10">
 </head>
 <body>
-    
-    <!-- Navigation Bar -->
     <header>
         <nav>
-            {% comment %} <div class="logo-title-container">
+            <div class="logo-title-container">
                 <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
                 <h1 class="site-title">Sayago's Cleaning Co.</h1>
-            </div> {% endcomment %}
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-
+            </div>            
             <ul class="centered-menu">
-                <li><a href="{% url 'u_home' %}">Home</a></li>
-                <li><a href="{% url 'user_services' %}">Services</a></li> 
-                <li><a href="{% url 'user_about' %}">About Us</a></li>
-                <li><a href="{% url 'user_blog' %}">Blog</a></li> 
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home_services' %}">Services</a></li>
+                <li><a href="{% url 'home_about' %}">About Us</a></li>
+                <li><a href="{% url 'home_blog' %}">Blog</a></li> 
+                {{request.user.username}}
             </ul>
-            <!-- Profile icon triggers a sidebar -->
-            <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
     </header>
 
-    <!-- Sidebar for user options like profile, logout -->
-    <div id="sidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-        <a href="{% url 'user_profile' %}">User Profile</a> <!-- Add URL mapping for user profile -->
-        <a href="{% url 'login' %}">Logout</a> <!-- Add URL mapping for logout --> 
-    </div>
-
-    <!-- Main Content Section -->
-    <div class="content">
-        <div class="men_text">
-            <h1>Clear<span>View</span></h1>
-            <h2>"Cleaning Services"</h2>
-            <div class="main_image">
-                <img src="{% static 'images/girl-cleaning.png' %}" alt="Girl cleaning" />
-            </div>
-
+        <div class="content">
+            <div class="men_text">
+            <br><h2>"Cleaning Services"</h2>
             <div class="text">
                 <p>
-                    Sayago Cleaning Inc. offers a range of cleaning services, including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
-                    We also provide commercial cleaning for offices, retail spaces, and industrial facilities. 
+                    Sayago Cleaning Inc. offers a range of cleaning services,  
+                    including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
+                    They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
                     Specialty services include carpet and upholstery cleaning, window washing, 
-                    and eco-friendly green cleaning options.
+                    and eco-friendly green cleaning options. 
                 </p>
             </div>
-
-            <!-- Book Now Button -->
-                <div class="buttons">
-                    <a href="#" class="book-now" id="bookNowBtn">Book Now</a>
-                </div>
+            <div class="buttons">
+                <a href="#" class="book-now" id="bookNowBtn">Book Now</a>
+            </div>
         </div>
     </div>
 
     <!-- Modal for the Booking Form -->
     <div id="bookingModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
+            <span class="close-btn" id="closeModal" aria-label="Close booking form">&times;</span>
             <h2>Book a Cleaning Service</h2>
 
             <!-- Booking Form -->
-                <form id="bookingForm">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="cleaningType">Choose a Cleaning Service:</label>
-                        <select id="cleaningType" name="cleaning_service" required> <!-- Match with 'cleaning_service' -->
-                            <option value="" disabled selected>Select a service</option>
-                            <option value="residential">Residential Cleaning</option>
-                            <option value="commercial">Commercial Cleaning</option>
-                            <option value="deep-cleaning">Deep Cleaning</option>
-                            <option value="move-in-out">Move-in/Move-out Cleaning</option>
-                            <option value="carpet-cleaning">Carpet Cleaning</option>
-                            <option value="upholstery-cleaning">Upholstery Cleaning</option>
-                            <option value="window-cleaning">Window Cleaning</option>
-                            <option value="eco-friendly">Eco-friendly Green Cleaning</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="fullName">First Name:</label>
-                        <input type="text" id="fullName" name="first_name" placeholder="Enter your first name" required> <!-- Match with 'full_name' -->
-                    </div>
-                    <div class="form-group">
-                        <label for="fullName">Last Name:</label>
-                        <input type="text" id="fullName" name="last_name" placeholder="Enter your last name" required> <!-- Match with 'full_name' -->
-                    </div>
-                    <div class="form-group">
-                        <label for="contactNumber">Contact Number:</label>
-                        <input type="tel" id="contactNumber" name="contact_number" placeholder="Enter your contact number" required> <!-- Match with 'contact_number' -->
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="additionalInfo">Additional Info:</label>
-                        <textarea id="additionalInfo" name="additional_info" placeholder="Additional details"></textarea> <!-- Match with 'additional_info' -->
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="privacyPolicy" name="privacyPolicy">
-                        <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>
-                    </div>
-                    <div class="form-group">
-                        <button id='booking_submit_btn'>Submit</button>
-                    </div>
-                </form>
-
+            <form id="bookingForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="cleaningType">Choose a Cleaning Service:</label>
+                    <select id="cleaningType" name="cleaning_service" required>
+                        <option value="" disabled selected>Select a service</option>
+                        <option value="residential">Residential Cleaning</option>
+                        <option value="commercial">Commercial Cleaning</option>
+                        <option value="deep-cleaning">Deep Cleaning</option>
+                        <option value="move-in-out">Move-in/Move-out Cleaning</option>
+                        <option value="carpet-cleaning">Carpet Cleaning</option>
+                        <option value="upholstery-cleaning">Upholstery Cleaning</option>
+                        <option value="window-cleaning">Window Cleaning</option>
+                        <option value="eco-friendly">Eco-friendly Green Cleaning</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="first_name" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="last_name" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="contact_number" placeholder="Enter your contact number" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Info:</label>
+                    <textarea id="additionalInfo" name="additional_info" placeholder="Additional details"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
+                    <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>
+                </div>
+                <div class="form-group">
+                    <button id="booking_submit_btn" type="submit">Submit</button>
+                </div>
+            </form>
 
             <!-- Thank You Message -->
             <div class="thank-you-message" id="thankYouMessage" style="display:none;">
@@ -122,7 +105,50 @@
         </div>
     </div>
 
+    <!-- JavaScript Links -->
     <script src="{% static 'scripts/jquery.js' %}"></script>
-    <script src="{% static 'scripts/user_index.js' %}"></script>
+    <script>
+        // Toggle Sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+}
+
+// Toggle Modal
+function toggleModal() {
+    const modal = document.getElementById("bookingModal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}
+
+// Close Modal when clicking the 'x' or outside of the modal
+document.getElementById("closeModal").onclick = function() {
+    toggleModal();
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("bookingModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Form Submission
+document.getElementById("bookingForm").onsubmit = function(event) {
+    event.preventDefault(); // Prevent form from submitting traditionally
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    thankYouMessage.style.display = "block";
+    setTimeout(() => {
+        thankYouMessage.style.display = "none";
+        toggleModal(); // Close modal after showing thank you message
+    }, 3000); // Hide message after 3 seconds
+}
+
+// Book Now button opens the modal
+document.getElementById("bookNowBtn").onclick = function() {
+    toggleModal();
+}
+
+    </script>
 </body>
 </html>
+

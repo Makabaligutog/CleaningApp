@@ -155,14 +155,18 @@ nav {
 
 /* Modal styling */
 .modal {
-    display: flex; /* Show modal */
-    margin-left: 20px;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.4); /* Background with opacity */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
 }
 
 .modal-content {
@@ -170,13 +174,215 @@ nav {
     padding: 20px;
     border-radius: 10px;
     width: 400px;
-    max-height: 90vh; /* Max height */
-    overflow-y: auto; /* Vertical scroll if needed */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    position: relative; /* Position for close button */
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
     text-align: center;
-    animation: slideInUp 0.4s ease forwards; /* Animation */
-    opacity: 1; /* Fully visible */
+    animation: slideInUp 0.4s ease forwards;
+    opacity: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Form fields */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #FFB300;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 179, 0, 0.3);
+}
+
+.form-group textarea {
+    height: 80px;
+    resize: none;
+}
+
+.form-group button {
+    background-color: #FFB300;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.form-group button:hover {
+    background-color: #E68A00;
+}
+
+/* Thank You Message */
+.thank-you-message {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    color: green;
+    margin-top: 20px;
+}
+
+/* Animation */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Profile Icon */
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 80%;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    margin-top: 44px;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #FFB300;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+/* Open Sidebar */
+.sidebar.open {
+    width: 250px;
+}
+
+.main-content {
+    transition: margin-right 0.5s;
+    padding: 20px;
+}
+
+.main-content.sidebar-open {
+    margin-right: 250px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .centered-menu {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    .site-title {
+        font-size: 24px;
+    }
+}
+
+/* Button styling */
+.book-now {
+    background-color: #ff6f00;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.book-now:hover {
+    background-color: #e68a00;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+    animation: slideInUp 0.4s ease forwards;
+    opacity: 0;
 }
 
 .close-btn {
@@ -222,7 +428,7 @@ nav {
 
 .form-group textarea {
     height: 80px;
-    resize: none; /* Prevent resizing */
+    resize: none;
 }
 
 .form-group button {
@@ -235,16 +441,16 @@ nav {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%; /* Full width */
+    width: 100%;
 }
 
 .form-group button:hover {
-    background-color: #E68A00; /* Change color on hover */
+    background-color: #E68A00;
 }
 
 /* Thank You Message */
 .thank-you-message {
-    display: none; /* Hidden by default */
+    display: none;
     text-align: center;
     font-size: 18px;
     color: green;
@@ -282,4 +488,3 @@ nav {
         padding: 150px 10px; /* Adjusted for smaller screens */
     }
 }
-

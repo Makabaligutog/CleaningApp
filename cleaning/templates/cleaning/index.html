@@ -14,8 +14,10 @@
 <body>
     <header>
         <nav>
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-            
+            <div class="logo-title-container">
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+            </div>            
             <ul class="centered-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'home_services' %}">Services</a></li>
