@@ -9,7 +9,7 @@
     {% load static %}
 
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}?10">
+    <link rel="stylesheet" href="{% static 'styles/user_index.css' %}?100">
 </head>
 <body>
     <header>
@@ -19,14 +19,16 @@
                 <h1 class="site-title">Sayago's Cleaning Co.</h1>
             </div>            
             <ul class="centered-menu">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'home_services' %}">Services</a></li>
-                <li><a href="{% url 'home_about' %}">About Us</a></li>
-                <li><a href="{% url 'home_blog' %}">Blog</a></li>
+                <li><a href="{% url 'u_home' %}">Home</a></li>
+                <li><a href="{% url 'user_services' %}">Services</a></li>
+                <li><a href="{% url 'user_about' %}">About Us</a></li>
+                <li><a href="{% url 'user_blog' %}">Blog</a></li>
                 <li>{{ request.user.username }}</li>
+                <img src="{% static 'images/icon2.png' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
+    
+
             </ul>
         </nav>
-        <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
     </header>
 
     <div id="sidebar" class="sidebar">
@@ -35,22 +37,22 @@
         <a href="{% url 'login' %}">Sign Out</a>
     </div>
 
-    <div class="content">
-        <div class="men_text">
-            <br><h2>"Cleaning Services"</h2>
-            <div class="text">
-                <p>
-                    Sayago Cleaning Inc. offers a range of cleaning services, including residential cleaning for homes, 
-                    such as deep cleaning and move-in/move-out services. They provide commercial cleaning for offices, 
-                    retail spaces, and industrial facilities. Specialty services include carpet and upholstery cleaning, 
-                    window washing, and eco-friendly green cleaning options.
-                </p>
-            </div>
-            <div class="buttons">
-                <a href="#" class="book-now" id="bookNowBtn">Book Now</a>
+    <div class="content" style="background-image: url('{% static "images/noga.jpeg" %}');">
+        <div class="content-overlay">
+            <div class="men_text">
+                <h2>The Best Cleaners Are Ready For Your Home</h2>
+                <div class="text">
+                    <p>
+                        Experience Busy Bee Cleaning Co. most rated deep cleaning process.
+                    </p>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="book-now" id="bookNowBtn">Book Now</a>
+                </div>
             </div>
         </div>
     </div>
+    
 
     <!-- Modal for the Booking Form -->
     <div id="bookingModal" class="modal">
