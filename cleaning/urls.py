@@ -19,6 +19,7 @@ urlpatterns = [
     path('user_about/', views.about, name='user_about'),
     path('user_blog/', views.blog, name='user_blog'),
     path('profile/', views.profile_view, name='user_profile'),
+    path('AntiBacterialMistTreatment/', views.anti_bacterial, name='anti_bacterial'),
     
     # Admin URLs
     path('owner/', views.admin_home, name='admin_homepage'),

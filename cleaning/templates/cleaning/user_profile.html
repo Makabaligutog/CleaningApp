@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile - Busy Bee Cleaning Co.</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/user_profile.css' %}?100">
+    <link rel="stylesheet" href="{% static 'styles/user_profile.css' %}?101">
 </head> 
 <body>
     <!-- Navigation Bar -->
     <header>
         <nav>
-            <img src="{% static 'image1/logo1.png' %}" class="logo" alt="Busy Bee Logo">
+            <div class="logo-title-container">
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+            </div> 
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'user_services' %}">Services</a></li>
@@ -77,7 +80,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Busy Bee Cleaning Co. All rights reserved.</p>
+        <p>&copy; 2024 Sayago Cleaning Co. All rights reserved.</p>
     </footer>
 </body>
 </html>

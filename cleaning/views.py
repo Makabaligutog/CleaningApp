@@ -60,37 +60,60 @@ def signup_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()  # Automatically saves the user
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            
+            # Check if the username already exists
+            if User.objects.filter(username=username).exists():
+                form.add_error('username', 'This username is already taken.')
+                return render(request, 'cleaning/register.html', {'form': form})
+
+            # Check if the email already exists
+            if User.objects.filter(email=email).exists():
+                form.add_error('email', 'This email is already registered.')
+                return render(request, 'cleaning/register.html', {'form': form})
+
+            # If validation passes, save the user and log them in
+            user = form.save()
             login(request, user)  # Log the user in after registration
             messages.success(request, 'Registration successful.')
-            return redirect('signup') 
+            return redirect('some_redirect_url')  # Redirect to a relevant page (e.g., profile, home)
     else:
         form = RegisterForm()
 
     return render(request, 'cleaning/register.html', {'form': form})
-
 # Booking Creation View
-@login_required
-@csrf_protect
 def create_booking(request):    
     if request.method == 'POST':
         form = BookingForm(request.POST)
         
         if form.is_valid():
-            booking = form.save(commit=True)
-            booking.user = request.user
+            # Get the service that the user is trying to book
+            service = form.cleaned_data.get('service')  # Assuming 'service' is a field in your form
+
+            # Check if the user has already booked this service
+            if Booking.objects.filter(user=request.user, service=service).exists():
+                messages.info(request, f"You have already booked the {service.name} service.")
+                return redirect('cleaning/u-index.html')  # Redirect to the relevant page (e.g., user dashboard)
+            
+            # If no existing booking, create the new booking
+            booking = form.save(commit=False)
+            booking.user = request.user  # Assign the current user to the booking
             booking.save()
 
+            # If the request is an AJAX request, return a JSON response
             if request.is_ajax():
                 return JsonResponse({
                     "message": "Booking created successfully!",
                     "booking_id": str(booking.booking_id)
                 }, status=201)
 
-            return redirect(request, 'cleaning/u-index.html')
-        
-        return redirect(request, 'cleaning/u-index.html')
+            # For non-AJAX requests, redirect the user
+            messages.success(request, "Your booking has been successfully created!")
+            return redirect('cleaning/u-index.html')  # Change to the relevant page after booking
 
+        # If the form is not valid, return the user to the same page with errors
+        return redirect('cleaning/u-index.html')  # Or render with the form and errors if needed
 class create_booking_views(View):
     def post(self, request):
         print('creating booking')
@@ -284,7 +307,9 @@ def admin_home(request):
     bookings = Booking.objects.all()
     return render(request, 'cleaning/Admin_index.html', {'bookings': bookings})
 
-
+#Anti bacterial in Services Learn More
+def anti_bacterial(request):
+    return render(request, 'cleaning/anti_bacterial.html')
 # Admin ratings
 def ratings_view(request):
     return render(request, 'cleaning/ratings.html')

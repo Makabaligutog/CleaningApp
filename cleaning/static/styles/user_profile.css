@@ -134,3 +134,19 @@ footer {
     width: 100%;
     bottom: 0;
 }
+.logo-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 170px;
+    margin-right: 15px;
+}
+
+.site-title {
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+}
+
