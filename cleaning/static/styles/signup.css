@@ -9,7 +9,7 @@ body {
     align-items: center;
     
     /* Background image and blur effect */
-    background-image: url('/images/clean.jpeg'); /* Replace with your image path */
+    background-image: url("{% static 'images/login.jpg'%}"); /* Replace with your image path */
     background-size: cover;
     background-position: center;
     position: relative;

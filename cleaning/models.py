@@ -80,6 +80,7 @@ class Booking(models.Model):
     additional_info = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
     created_at = models.DateTimeField(auto_now_add=True)
+    booking_date = models.DateField() 
 
     def __str__(self):
         return f"Booking by {self.first_name} {self.last_name} - {self.cleaning_service}"

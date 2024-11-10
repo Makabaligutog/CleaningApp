@@ -44,6 +44,7 @@
                                 <th>Address</th>
                                 <th>Services</th>
                                 <th>Status</th>
+                                <th>Date Booked</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -69,6 +70,8 @@
                                             </select>
                                         </form>
                                     </td>
+                                    <td>{{booking.booking_date}}</td>
+
                                     <td>
                                         <!-- Deny Button Form -->
                                         <form method="POST" action="{% url 'deny_booking' booking.booking_id %}" class="action-form">

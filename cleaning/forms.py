@@ -9,12 +9,14 @@ class ServiceReviewForm(forms.ModelForm):
         model = ServiceReview
         fields = ['customer_name', 'message', 'photo', 'rating']
         
-        
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['cleaning_service', 'first_name', 'last_name', 'contact_number', 'address', 'additional_info']
-        
+        fields = [
+            'user', 'cleaning_service', 'first_name', 'last_name', 'contact_number',
+            'address', 'additional_info', 'status', 'booking_date'
+        ]
+     
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
 

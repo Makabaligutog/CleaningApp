@@ -3,51 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busy Bee Cleaning Co.</title>
+    <title>Sayago's Cleaning Co.</title>
 
     <!-- Load static files -->
     {% load static %}
 
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}?10">
+    <link rel="stylesheet" href="{% static 'styles/user_index.css' %}?13">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo-title-container">
                 <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+                <h1 class="site-title">Sayago's Cleaning Services</h1>
             </div>            
             <ul class="centered-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'home_services' %}">Services</a></li>
                 <li><a href="{% url 'home_about' %}">About Us</a></li>
                 <li><a href="{% url 'home_blog' %}">Blog</a></li> 
-
             </ul>
         </nav>
     </header>
-
-        <div class="content">
-            <div class="men_text">
-            <br><h2>"Cleaning Services"</h2>
-            <div class="text">
-                <p>
-                    Sayago Cleaning Inc. offers a range of cleaning services,  
-                    including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
-                    They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
-                    Specialty services include carpet and upholstery cleaning, window washing, 
-                    and eco-friendly green cleaning options. 
-                </p>
-            </div>
-
-            <!-- Book Now and Login Buttons -->
-            <div class="buttons">
-                <a href="{% url 'signup' %}" class="login-btn" id="loginBtn">Register now</a>
-            </div>
+    <main class="content" style="background-image: url('{% static 'images/noga.jpeg' %}');">
+        <div class="content-overlay">
+            <h2>ClearView</h2>
+            <p> ClearView offers a range of cleaning services,  
+                including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
+                They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
+                Specialty services include carpet and upholstery cleaning, window washing, 
+                and eco-friendly green cleaning options. </p>
+            <a href="{% url 'signup' %}" class="login-btn" id="login-btn">Book Now</a>
         </div>
-    </div>
-
+    </main>
+    
+    
     <!-- Include your JS file -->
     <script src="{% static 'scripts/index.js' %}"></script>
 </body>

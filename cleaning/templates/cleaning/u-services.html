@@ -1,44 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busy Bee Cleaning Co.</title>
+    <title>services</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/services.css' %}?112">
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' /> 
+    <link rel="stylesheet" href="{% static 'styles/user_services.css' %}?103">
 </head>
 <body>
-    <header>
-        
-        <nav>
+    <!-- Main Layout -->
+    <div class="wrapper">
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Header Navigation -->
+            <header>
+                <nav>
             <div class="logo-title-container">
-                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="Busy Bee Logo">
+                <h1 class="site-title">Sayago's Cleaning Services</h1>
             </div>
-                <ul class="centered-menu">
+            <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
                 <li><a href="{% url 'user_services' %}">Services</a></li>
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
                 <li><a href="{% url 'user_blog' %}">Blog</a></li>
+                <li>{{ request.user.username }}</li>
+                <li><img src="{% static 'images/icon2.png' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()"></li>
             </ul>
         </nav>
-    </header>
+            </header>
+            <div id="sidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+                <a href="{% url 'user_profile' %}">Profile</a>
+                <a href="{% url 'home' %}">Sign Out</a>
+            </div>
 
- 
-    
-    <div class="hero-section">
-        <img src="{% static 'images/noga.jpeg' %}" alt="Cleaning Service" class="hero-image">
-        <div class="hero-text">
-            <h1>Every nook and cranny?
-                We got you!</h1>            
-            <p>Experience Sayago's Cleaning Co.'s most rated deep cleaning process
-            </p>
-        </div>
-    </div>    
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <img src="{% static 'images/noga.jpeg' %}" alt="Cleaning Service" class="hero-image">
+                <div class="hero-text">
+                    <h1>Welcome to ClearView: Cleaning Services</h1>
+                    <p>Your trusted partner for spotless spaces</p>
+                </div>
+            </div>    
 
-    <section id="services" class="services-section"></section>
+            <!-- Services Section -->
+            <section id="services" class="services-section"></section>
             <h2 class="section-subtitle">Our Services</h2>
             <h1 class="section-title">We've got what you need!</h1>
             <div class="services-grid">
@@ -97,6 +104,8 @@
                 
             </div> 
     </section>
+    <script src="{% static 'scripts/jquery.js' %}"></script>
+    <script src="{% static 'scripts/user_index.js'%}"></script>
      <!-- Calendar Section -->
      <div id="calendar-section">
         <div class="calendar-header">
@@ -108,6 +117,33 @@
     <!-- FullCalendar JS -->
     <script src="{% static 'scripts/user_services.js'%}"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src="{% static 'scripts/jquery.js' %}"></script>
+    <script src="{% static 'scripts/user_index.js'%}"></script>
+    <script>
+        // Sidebar toggle function
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+        }
 
+        // Modal toggle function
+        function toggleModal() {
+            const modal = document.getElementById("bookingModal");
+            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+        }
+
+        // Close modal when 'X' is clicked
+        document.getElementById("closeModal").onclick = function() {
+            toggleModal();
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("bookingModal");
+            if (event.target === modal) {
+                toggleModal();
+            }
+        }
+        </script>
 </body>
 </html>

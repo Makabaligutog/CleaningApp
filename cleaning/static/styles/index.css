@@ -1,4 +1,4 @@
-/* Reset and global styles */
+/* Reset and Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,278 +8,378 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-/* Header styles */
+/* Header Styles */
 header {
     background-color: #FFB300;
-    height: 150px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header container to centralize logo and menu */
+/* Header Container */
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Limits header width on larger screens */
+    max-width: 1200px;
 }
 
-/* Logo and title styling */
+/* Logo and Title Styling */
 .logo-title-container {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-right: 30px; /* Space between logo-title and navbar */
 }
 
 .logo {
-    width: 130px;
+    width: 60px;
     cursor: pointer;
 }
 
 .site-title {
-    font-size: 30px;
-    font-weight: bolder;
+    font-size: 24px;
+    font-weight: bold;
     color: black;
 }
 
-/* Navigation styles */
+/* Navigation Styles */
 nav {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .centered-menu {
     list-style: none;
     display: flex;
     gap: 20px;
-}
-
-.centered-menu li {
-    margin: 0 10px;
+    transition: all 0.3s ease;
 }
 
 .centered-menu li a {
     text-decoration: none;
     color: black;
     font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .centered-menu li a:hover {
-    color: darkorange;
-}
-
-/* Button styling */
-.book-now {
-    background-color: #ff6f00;
     color: white;
-    padding: 10px 20px;
-    text-decoration: none;
+    background-color: darkorange;
     border-radius: 5px;
-    font-weight: bold;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
 }
 
-.book-now:hover {
-    background-color: #e68a00;
+/* Profile Icon Styling */
+.profile-icon {
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.3s;
 }
 
-/* Login and Book Now Button */
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.profile-icon:hover {
+    transform: scale(1.1);
 }
 
+/* Login and Register Button */
 .login-btn {
     text-decoration: none;
-    background-color: #ff9900;
+    background-color: #ff9900; /* Button color */
     color: white;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 5px;
     font-size: 18px;
     transition: background-color 0.3s ease;
+    margin-top: 1000px; /* Adjust this value to control the vertical spacing */
 }
+
 
 .login-btn:hover {
-    background-color: #cc7a00;
+    background-color: #cc7a00; /* Hover color */
 }
 
-/* Content area */
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #FFB300;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1001;
+}
+
+.sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #000;
+    background-color: #e0fbfc;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    color: #fff;
+}
+
+/* Hamburger Menu for Mobile */
+.hamburger-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FFB300;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1001;
+}
+
+.hamburger-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.hamburger-menu a:hover {
+    color: #000;
+    background-color: #e0fbfc;
+}
+
+.hamburger-menu .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    color: #fff;
+}
+
+/* Content Area */
 .content {
-    background-image: url("../images/noga.jpeg");
+    background-image: url("{% static 'images/noga.jpeg' %}");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 300px;
-    color: white;
+    min-height: calc(100vh - 80px); /* Adjust for header height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.content-overlay {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 850px;
 }
 
 .men_text h2 {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #333;
 }
 
-/* Social Media Section */
-.social-media {
-    text-align: center;
-    margin-top: 30px;
+.text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.social-media h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: white;
+/* Book Now Button */
+.book-now {
+    display: inline-block;
+    background-color: #FFB300;
+    color: #ffffff;
+    padding: 12px 30px;
+    font-size: 1em;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s;
 }
 
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.book-now:hover {
+    background-color: #cc7a00;
 }
 
-.social-icon img {
-    width: 40px;
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-.social-icon img:hover {
-    transform: scale(1.1);
-}
-
-/* Modal styling */
+/* Modal Styling */
 .modal {
-    display: flex; /* Show modal */
-    margin-left: 20px;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.4); /* Background with opacity */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
     background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    max-height: 90vh; /* Max height */
-    overflow-y: auto; /* Vertical scroll if needed */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    position: relative; /* Position for close button */
-    text-align: center;
-    animation: slideInUp 0.4s ease forwards; /* Animation */
-    opacity: 1; /* Fully visible */
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: left;
 }
 
 .close-btn {
+    color: #333;
+    font-size: 24px;
     position: absolute;
-    top: 10px;
     right: 15px;
-    font-size: 20px;
+    top: 15px;
     cursor: pointer;
 }
 
-/* Form fields */
-.form-group {
-    margin-bottom: 15px;
+.close-btn:hover {
+    color: #d64a3c;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 6px;
+.modal-content h2 {
+    color: #3d5a80;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
     font-weight: bold;
-    font-size: 14px;
-    color: #333;
+    margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+form input[type="text"],
+form input[type="tel"],
+form select,
+form textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    border-color: #FFB300;
-    outline: none;
-    box-shadow: 0 0 5px rgba(255, 179, 0, 0.3);
+form textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
-.form-group textarea {
-    height: 80px;
-    resize: none; /* Prevent resizing */
+form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
 }
 
-.form-group button {
+form .form-group label a {
+    color: #3d5a80;
+    text-decoration: none;
+}
+
+form .form-group label a:hover {
+    text-decoration: underline;
+}
+
+form button[type="submit"] {
     background-color: #FFB300;
     color: white;
-    padding: 10px 20px;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Full width */
+    transition: background-color 0.3s;
 }
 
-.form-group button:hover {
-    background-color: #E68A00; /* Change color on hover */
+form button[type="submit"]:hover {
+    background-color: #cc7a00;
 }
 
 /* Thank You Message */
 .thank-you-message {
-    display: none; /* Hidden by default */
+    display: none;
+    color: #4CAF50;
     text-align: center;
-    font-size: 18px;
-    color: green;
-    margin-top: 20px;
-}
-
-/* Animation */
-@keyframes slideInUp {
-    from {
-        transform: translateY(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
     .centered-menu {
+        display: none;
         flex-direction: column;
-        gap: 15px;
-        margin-top: 10px;
+        width: 100%;
     }
-    .site-title {
+    .hamburger {
+        display: block;
+        color: black;
+    }
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .content-overlay {
+        padding: 20px;
+    }
+    .men_text h2 {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         font-size: 24px;
     }
-    .content {
-        padding: 150px 10px; /* Adjusted for smaller screens */
+    .text p {
+        font-size: 16px;
     }
 }
-

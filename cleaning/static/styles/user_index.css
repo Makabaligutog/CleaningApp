@@ -1,9 +1,9 @@
-/* General Reset */
+/* Reset and Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -12,71 +12,120 @@ body {
     color: #333;
 }
 
-/* Header */
+/* Header Styles */
 header {
     background-color: #FFB300;
-    padding: 10px 25px;
+    height: 80px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-header nav {
+/* Header Container */
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: 1200px;
 }
 
+/* Logo and Title Styling */
 .logo-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 30px;
+}
+
+.logo {
+    width: 60px;
+    cursor: pointer;
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Center the menu items */
+.centered-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;  /* Align items vertically */
+    transition: all 0.3s ease;
+}
+
+.centered-menu li {
     display: flex;
     align-items: center;
 }
 
-.logo {
-    height: 170px;
-    margin-right: 15px;
-}
-
-.site-title {
-    color: #ffffff;
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.centered-menu {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-}
-
-.centered-menu li {
-    padding: 8px 15px;
-}
-
 .centered-menu li a {
-    margin-right: 20px;
-    color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    
+    color: black;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .centered-menu li a:hover {
-    color: #e0fbfc;
-    border-bottom: 2px solid #e0fbfc;
+    color: white;
+    background-color: darkorange;
+    border-radius: 5px;
 }
 
+/* Profile Icon Styling */
 .profile-icon {
-    height: 50px;
+    height: 40px;
     cursor: pointer;
-    background-color: transparent;
-    border-radius: 20px;
+    border-radius: 50%;
+    transition: transform 0.3s;
 }
 
-/* Sidebar */
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Login and Register Button */
+.login-btn {
+    text-decoration: none;
+    background-color: #ff9900; /* Button color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #cc7a00; /* Hover color */
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Sidebar Styles */
 .sidebar {
     height: 100%;
     width: 0;
@@ -87,68 +136,106 @@ header nav {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .sidebar a {
-    padding: 15px 20px;
+    padding: 10px 20px;
     text-decoration: none;
-    font-size: 18px;
-    color: #ffffff;
+    font-size: 25px;
+    color: #fff;
     display: block;
     transition: 0.3s;
 }
 
 .sidebar a:hover {
-    color: #e0fbfc;
+    color: #000;
+    background-color: #e0fbfc;
 }
 
 .sidebar .closebtn {
     position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 30px;
-    color: #ffffff;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    color: #fff;
 }
 
-/* Main Content */
+/* Hamburger Menu for Mobile */
+.hamburger-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FFB300;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1001;
+}
+
+.hamburger-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.hamburger-menu a:hover {
+    color: #000;
+    background-color: #e0fbfc;
+}
+
+.hamburger-menu .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    color: #fff;
+}
+
+/* Content Area */
 .content {
-    max-width: 100%;
-    height: 150%;
+    background-image: url("{% static 'images/noga.jpeg' %}");
+    background-size: cover;
     background-position: center;
-    position: relative;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 80px); /* Adjust for header height */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 20px;
 }
-/* Overlay for Text and Button */
+
 .content-overlay {
+    background: rgba(255, 255, 255, 0.8);
     padding: 40px;
-    color: #ffffff; /* White text for contrast */
+    border-radius: 10px;
+    text-align: center;
     max-width: 600px;
-    text-align: left;
-    margin: 0;
-    margin-right: 100px;
 }
 
 .men_text h2 {
-    font-size: 5em;
-    margin-top: 150px;
-    margin-bottom: 10px;
-    color: #ffffff; /* White text on dark overlay */
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .text p {
-    font-size: 1.2em;
+    font-size: 18px;
     line-height: 1.6;
     margin-bottom: 20px;
-    color: #ffffff; /* White text on dark overlay */
+    color: #333;
 }
+
 /* Book Now Button */
 .book-now {
     display: inline-block;
-    background-color: #FFB300; /* Matches header color */
+    background-color: #FFB300;
     color: #ffffff;
     padding: 12px 30px;
     font-size: 1em;
@@ -156,90 +243,167 @@ header nav {
     border-radius: 25px;
     transition: background-color 0.3s;
 }
+
 .book-now:hover {
-    background-color: #d64a3c;
+    background-color: #cc7a00;
 }
 
 /* Modal Styling */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
-    padding-top: 60px;
-    left: 0;
+    z-index: 1002;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    padding: 20px; /* Add padding for better spacing on smaller screens */
 }
 
 .modal-content {
-    background-color: #ffffff;
-    margin: auto;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 90%;
+    width: 100%;
     max-width: 500px;
+    position: relative;
+    text-align: left;
+    max-height: 90vh; /* Max height to fit within viewport */
+    overflow-y: auto; /* Make modal content scrollable */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .close-btn {
     color: #333;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 24px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
     cursor: pointer;
 }
 
 .close-btn:hover {
-    color: #ee6c4d;
+    color: #d64a3c;
 }
 
-h2 {
+.modal-content h2 {
     color: #3d5a80;
     margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 form .form-group {
-    margin-bottom: 15px;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 form label {
     font-weight: bold;
-    color: #333;
+    margin-bottom: 5px;
 }
 
-form input, form select, form textarea {
+form input[type="text"],
+form input[type="tel"],
+form select,
+form textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+form .form-group label a {
+    color: #3d5a80;
+    text-decoration: none;
+}
+
+form .form-group label a:hover {
+    text-decoration: underline;
 }
 
 form button[type="submit"] {
     background-color: #FFB300;
-    color: #ffffff;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
 form button[type="submit"]:hover {
-    background-color: #d29506;
+    background-color: #cc7a00;
 }
 
 /* Thank You Message */
 .thank-you-message {
-    background-color: #e0fbfc;
-    color: #293241;
-    padding: 15px;
-    border-radius: 5px;
-    font-size: 16px;
+    display: none;
+    color: #4CAF50;
     text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .centered-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .hamburger {
+        display: block;
+        color: black;
+    }
+    .modal-content {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+}
+#bookingDate {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    color: #333;
+    background-color: #f4f4f9;
+}
+
+#bookingDate:focus {
+    border-color: #FFB300;
+    outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
 }

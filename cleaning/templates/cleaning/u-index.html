@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busy Bee Cleaning Co.</title>
+    <title>Sayago's Cleaning Services</title>
 
     <!-- Load static files -->
     {% load static %}
 
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/user_index.css' %}?101">
+    <link rel="stylesheet" href="{% static 'styles/user_index.css' %}?102">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo-title-container">
                 <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
-                <h1 class="site-title">Sayago's Cleaning Co.</h1>
+                <h1 class="site-title">Sayago'sCleaning Services </h1>
             </div>            
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
@@ -25,8 +25,6 @@
                 <li><a href="{% url 'user_blog' %}">Blog</a></li>
                 <li>{{ request.user.username }}</li>
                 <img src="{% static 'images/icon2.png' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
-    
-
             </ul>
         </nav>
     </header>
@@ -34,7 +32,7 @@
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
         <a href="{% url 'user_profile' %}">Profile</a>
-        <a href="{% url 'login' %}">Sign Out</a>
+        <a href="{% url 'home' %}">Sign Out</a>
     </div>
 
     <div class="content" style="background-image: url('{% static "images/noga.jpeg" %}');">
@@ -94,13 +92,13 @@
                     <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="bookingDate">Select Booking Date:</label>
+                    <input type="date" id="bookingDate" name="booking_date" required>
+                </div>
+                <div class="form-group">
                     <label for="additionalInfo">Additional Info:</label>
                     <textarea id="additionalInfo" name="additional_info" placeholder="Additional details"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="bookingDate">Select Booking Date:</label>
-                    <input type="date" id="bookingDate" name="booking_date" required>
-                </div>                
                 <div class="form-group">
                     <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
                     <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>

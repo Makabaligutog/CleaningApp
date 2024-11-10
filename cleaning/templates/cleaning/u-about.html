@@ -4,31 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>About us</title>
     {% load static %}
-
-    <link rel="stylesheet" href="{% static 'styles/about.css' %}">
+<!-- Link to your CSS file -->
+<link rel="stylesheet" href="{% static 'styles/user_about.css' %}?">
 </head>
 <body>
     <header>
-        
         <nav>
-            <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+            <div class="logo-title-container">
+                <img src="{% static 'images/logo1.png' %}" class="logo" alt="logo">
+                <h1 class="site-title">Sayago's Cleaning Services </h1>
+            </div>            
             <ul class="centered-menu">
                 <li><a href="{% url 'u_home' %}">Home</a></li>
-                <li><a href="{% url 'user_services' %}">Services</a></li> 
+                <li><a href="{% url 'user_services' %}">Services</a></li>
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
-                <li><a href="{% url 'user_blog' %}">Blog</a></li> 
-                {{ request.user.username }}</p>
+                <li><a href="{% url 'user_blog' %}">Blog</a></li>
+                <li>{{ request.user.username }}</li>
+                <img src="{% static 'images/icon2.png' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
             </ul>
-            <img src="{% static 'images/icon.jpg' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
         </nav>
     </header>
+
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-        <a href="client_table.html">User Profile</a>
-        <a href="#"></a>
-        <a href="login.html">Logout</a>
+        <a href="{% url 'user_profile' %}">Profile</a>
+        <a href="{% url 'home' %}">Sign Out</a>
     </div>
 
     <section class="hero"></section>
@@ -72,5 +74,33 @@
         </div>
     </section>
     <script src="user_about.js"></script>
+    <script src="{% static 'scripts/jquery.js' %}"></script>
+    <script src="{% static 'scripts/user_index.js'%}"></script>
+    <script>
+        // Sidebar toggle function
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+        }
+
+        // Modal toggle function
+        function toggleModal() {
+            const modal = document.getElementById("bookingModal");
+            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+        }
+
+        // Close modal when 'X' is clicked
+        document.getElementById("closeModal").onclick = function() {
+            toggleModal();
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("bookingModal");
+            if (event.target === modal) {
+                toggleModal();
+            }
+        }
+        </script>
 </body>
 </html>

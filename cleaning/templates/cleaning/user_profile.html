@@ -20,7 +20,7 @@
                 <li><a href="{% url 'user_services' %}">Services</a></li>
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
                 <li><a href="{% url 'user_blog' %}">Blog</a></li>
-                <li><a href="{% url 'login' %}">Logout</a></li> <!-- Add logout link -->
+                <li><a href="{% url 'home' %}">Logout</a></li> <!-- Add logout link -->
             </ul>
         </nav>
     </header>
@@ -57,6 +57,10 @@
                     <tr>
                         <th>Additional Information</th>
                         <td>{{ booking.additional_info }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Booked</th>
+                        <td>{{ booking.booking_date }}</td>
                     </tr>
                     <tr>
                         <th>Status</th>
