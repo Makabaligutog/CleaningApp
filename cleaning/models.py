@@ -10,13 +10,20 @@ class ServiceRating(models.Model):
     SERVICE_CHOICES = [
         ('residential', 'Residential Cleaning'),
         ('commercial', 'Commercial Cleaning'),
-        ('deep_cleaning', 'Deep Cleaning'),
-        ('move_in_out', 'Move-in/Move-out Cleaning'),
-        ('carpet_cleaning', 'Carpet Cleaning'),
-        ('upholstery_cleaning', 'Upholstery Cleaning'),
-        ('window_cleaning', 'Window Cleaning'),
-        ('eco_friendly', 'Eco-friendly Green Cleaning'),
-    ]
+        ('deep-cleaning', 'Deep Cleaning'),
+        ('move-in-out', 'Move-in/Move-out Cleaning'),
+        ('carpet-cleaning', 'Carpet Cleaning'),
+        ('upholstery-cleaning', 'Upholstery Cleaning'),
+        ('window-cleaning', 'Window Cleaning'),
+        ('eco-friendly', 'Eco-friendly Green Cleaning'),
+        ('anti-bacterial-mist', 'Anti-Bacterial Mist Treatment'),
+        ('car-interior-detailing', 'Car Interior Detailing'),
+        ('deep-dry-cleaning', 'Deep Dry Cleaning'),
+        ('deep-home-cleaning', 'Deep Home Cleaning'),
+        ('deep-upholstery-shampooing', 'Deep Upholstery Shampooing'),
+        ('steam-sterilization', 'Superior Steam Sterilization'),
+]
+
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Optional: Only if ratings are user-specific
     service_name = models.CharField(max_length=50, choices=SERVICE_CHOICES)
@@ -57,8 +64,14 @@ class Booking(models.Model):
     ('upholstery-cleaning', 'Upholstery Cleaning'),
     ('window-cleaning', 'Window Cleaning'),
     ('eco-friendly', 'Eco-friendly Green Cleaning'),
-    
-    ]
+    ('anti-bacterial-mist', 'Anti-Bacterial Mist Treatment'),
+    ('car-interior-detailing', 'Car Interior Detailing'),
+    ('deep-dry-cleaning', 'Deep Dry Cleaning'),
+    ('deep-home-cleaning', 'Deep Home Cleaning'),
+    ('deep-upholstery-shampooing', 'Deep Upholstery Shampooing'),
+    ('steam-sterilization', 'Superior Steam Sterilization'),
+]
+
 
     PENDING = 'pending'
     CONFIRMED = 'confirmed'
@@ -72,7 +85,7 @@ class Booking(models.Model):
 
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cleaning_service = models.CharField(max_length=20, choices=CLEANING_CHOICES)
+    cleaning_service = models.CharField(max_length=100, choices=CLEANING_CHOICES)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, default='Unknown')
     contact_number = models.CharField(max_length=15)
