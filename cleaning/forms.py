@@ -9,17 +9,21 @@ class ServiceReviewForm(forms.ModelForm):
         model = ServiceReview
         fields = ['customer_name', 'message', 'photo', 'rating']
         
+
+        # ISA RA KA BOOKINGFORM GAMITON
+# class BookingForm(forms.ModelForm):
+#     class Meta:
+#         model = Booking
+#         fields = [
+#              'cleaning_service', 'first_name', 'last_name', 'contact_number',
+#             'address', 'additional_info', 'status', 'booking_date',
+#             # 'user', DILI GAMITON KAY BACK END MO HANDLE - SA VIEWS.PY
+#         ]
+        
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = [
-            'user', 'cleaning_service', 'first_name', 'last_name', 'contact_number',
-            'address', 'additional_info', 'status', 'booking_date'
-        ]
-class BookingForm(forms.ModelForm):
-    class Meta:
-        model = Booking
-        exclude = ['status']
+        exclude = ['booking_id', 'status', 'user', 'created_at']
      
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)

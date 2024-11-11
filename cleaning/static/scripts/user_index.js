@@ -100,6 +100,7 @@ $(document).ready(function(){
             'contact_number': form.find('input[name="contact_number"]').val(),
             'address': form.find('textarea[name="address"]').val(),
             'additional_info': form.find('textarea[name="additional_info"]').val(),
+            'booking_date': form.find('input[name="booking_date"]').val()
         }
         console.log(form_data);
         alert(form_data);
