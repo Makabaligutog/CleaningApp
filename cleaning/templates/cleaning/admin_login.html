@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Sayago Cleaning Inc.</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/admin_login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin_login.css' %}?101">
 </head>
 <body>
     <div class="admin-container">
@@ -16,7 +16,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Login</button>
+                <button class ="submit-btn" type="submit">Login</button>
             </form>
             <p>Don't have an account? <a href="{% url 'owner_signup' %}">Signup here</a></p>
         </main>

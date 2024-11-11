@@ -9,7 +9,7 @@
     {% load static %}
 
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="{% static 'styles/user_index.css' %}?13">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}?101">
 </head>
 <body>
     <header>
@@ -28,13 +28,13 @@
     </header>
     <main class="content" style="background-image: url('{% static 'images/noga.jpeg' %}');">
         <div class="content-overlay">
-            <h2>ClearView</h2>
-            <p> ClearView offers a range of cleaning services,  
+            <h2>Sayago's Cleaning Services</h2>
+            <p> Sayago's Cleaning Services offers a range of cleaning services,  
                 including residential cleaning for homes, such as deep cleaning and move-in/move-out services. 
                 They provide commercial cleaning for offices, retail spaces, and industrial facilities. 
                 Specialty services include carpet and upholstery cleaning, window washing, 
                 and eco-friendly green cleaning options. </p>
-            <a href="{% url 'signup' %}" class="login-btn" id="login-btn">Book Now</a>
+            <a href="{% url 'login' %}" class="login-btn" id="login-btn">Book Now</a>
         </div>
     </main>
     

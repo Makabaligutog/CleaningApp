@@ -20,6 +20,12 @@ urlpatterns = [
     path('user_blog/', views.blog, name='user_blog'),
     path('profile/', views.profile_view, name='user_profile'),
     path('AntiBacterialMistTreatment/', views.anti_bacterial, name='anti_bacterial'),
+    path('CarInteriorDetailing/', views.car_interior, name='car_interior'),
+    path('DeepDryCleaning/', views.deep_dry, name='deep_dry'),
+    path('DeepHomeCleaning/', views.deep_home, name='deep_home'),
+    path('DeepUpholsteryShampooing/', views.deep_holstery, name='deep_holstery'),
+    path('SuperiorSteamSterilization/', views.sterilization, name='sterilize'),
+
     
     # Admin URLs
     path('owner/', views.admin_home, name='admin_homepage'),

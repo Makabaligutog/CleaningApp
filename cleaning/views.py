@@ -335,3 +335,20 @@ def services_home(request):
 # Blog Home Page
 def blog_home(request):
     return render(request, 'cleaning/blog.html')
+
+#car interior
+def car_interior(request):
+    return render(request, 'cleaning/car_interior.html')
+
+def deep_dry(request):
+    return render(request, 'cleaning/deep_dry.html')
+
+def deep_home(request):
+    return render(request, 'cleaning/deep_home.html')
+
+def deep_holstery(request):
+    return render(request, 'cleaning/deep_holstery.html')
+
+
+def sterilization(request):
+    return render(request, 'cleaning/sterilization.html')

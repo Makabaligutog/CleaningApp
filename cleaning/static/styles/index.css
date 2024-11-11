@@ -105,7 +105,7 @@ nav {
     border-radius: 5px;
     font-size: 18px;
     transition: background-color 0.3s ease;
-    margin-top: 1000px; /* Adjust this value to control the vertical spacing */
+    margin-top: 100%; /* Adjust this value to control the vertical spacing */
 }
 
 

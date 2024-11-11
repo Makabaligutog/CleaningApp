@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busy Bee Cleaning Co.</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/anti_bacterial.css' %}?119">
+    <link rel="stylesheet" href="{% static 'styles/anti_bacterial.css' %}?120">
 </head>
 <body>
     <header>
@@ -22,7 +22,6 @@
                 <li><a href="{% url 'user_about' %}">About Us</a></li>
                 <li><a href="{% url 'user_blog' %}">Blog</a></li>
                 <li>{{ request.user.username }}</li>
-                <img src="{% static 'images/icon2.png' %}" class="profile-icon" alt="Profile" onclick="toggleSidebar()">
             </ul>
         </nav>
     </header>

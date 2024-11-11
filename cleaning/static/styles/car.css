@@ -133,10 +133,8 @@ nav ul li a {
 }
 
 .hero-image {
-    max-width: 100%; /* Ensures it doesn't exceed its container width */
-    max-height: 200%; /* Ensures it doesn't exceed the section height */
-    border-radius: 10px; /* Optional for rounded corners */
-    object-fit: cover; /* Ensures the image covers the container without distortion */
+    height: 500px;
+   border-radius: 10px;
 }
 
 /* Section Titles */
