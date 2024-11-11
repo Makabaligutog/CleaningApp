@@ -17,10 +17,11 @@
                 <h1 class="site-title">Sayago's Cleaning Co.</h1>
             </div>
                 <ul class="centered-menu">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'home_services' %}">Services</a></li>
-                    <li><a href="{% url 'home_about' %}">About Us</a></li>
-                    <li><a href="{% url 'home_blog' %}">Blog</a></li> 
+                <li><a href="{% url 'u_home' %}">Home</a></li>
+                <li><a href="{% url 'user_services' %}">Services</a></li>
+                <li><a href="{% url 'user_about' %}">About Us</a></li>
+                <li><a href="{% url 'user_blog' %}">Blog</a></li>
+                <li>{{ request.user.username }}</li>
             </ul>
         </nav>
     </header>
@@ -29,14 +30,14 @@
     
     <div class="hero-section">
         <div class="hero-text">
-            <h1>Car Interior Detailing</h1>
+            <h1>Move in/Move Out Cleaning</h1>
             <ul>
                 <li>Most Recommended by over 800 customers</li>
                 <li>Complete Package, Affordable Rates</li>
             </ul>
         </div>
         <div class="hero-image-container">
-            <img class="hero-image" src="{% static 'images/services2.jpg' %}" alt="Cleaning Process">
+            <img class="hero-image" src="{% static 'images/services9.jpg' %}" alt="Cleaning Process">
         </div>
     </div>
     
@@ -50,7 +51,7 @@
             <div class="services-grid">
                 <!-- Existing Services -->
                 <div class="service-card">
-                    <img src="{% static 'images/services2.jpg' %}" alt="Anti-Bacterial Mist Treatment" class="service-image">      
+                    <img src="{% static 'images/services9.jpg' %}" alt="Anti-Bacterial Mist Treatment" class="service-image">      
             </div>
              <h3>
                 <br>Get your vehicle looking new with ellaborate interior<br> detailing. Detailing a car interior involves a deep

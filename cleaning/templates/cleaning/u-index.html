@@ -67,12 +67,9 @@
                         <option value="" disabled selected>Select a service</option>
                         <option value="residential">Residential Cleaning</option>
                         <option value="commercial">Commercial Cleaning</option>
-                        <option value="deep-cleaning">Deep Cleaning</option>
                         <option value="move-in-out">Move-in/Move-out Cleaning</option>
                         <option value="carpet-cleaning">Carpet Cleaning</option>
-                        <option value="upholstery-cleaning">Upholstery Cleaning</option>
                         <option value="window-cleaning">Window Cleaning</option>
-                        <option value="eco-friendly">Eco-friendly Green Cleaning</option>
                         <option value="anti-bacterial-mist">Anti-Bacterial Mist Treatment</option>
                         <option value="car-interior-detailing">Car Interior Detailing</option>
                         <option value="deep-dry-cleaning">Deep Dry Cleaning</option>
@@ -111,7 +108,7 @@
                     <label for="privacyPolicy">I have read and accept the <a href="#">Privacy Policy</a></label>
                 </div>
                 <div class="form-group">
-                    <button id="booking_submit_btn" type="submit">Submit</button>
+                    <button id="booking_submit_btn" name="booking_submit_btn" type="Submit">Submit</button>
                 </div>
             </form>
 
@@ -125,49 +122,5 @@
     <!-- JavaScript Links -->
     <script src="{% static 'scripts/jquery.js' %}"></script>
     <script src="{% static 'scripts/user_index.js'%}"></script>
-    <script>
-        // Sidebar toggle function
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-        }
-
-        // Modal toggle function
-        function toggleModal() {
-            const modal = document.getElementById("bookingModal");
-            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
-        }
-
-        // Close modal when 'X' is clicked
-        document.getElementById("closeModal").onclick = function() {
-            toggleModal();
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById("bookingModal");
-            if (event.target === modal) {
-                toggleModal();
-            }
-        }
-
-        // Open modal when "Book Now" button is clicked
-        document.getElementById("bookNowBtn").onclick = function() {
-            toggleModal();
-        }
-
-        // Form Submission Logic (to be handled in your JS file)
-        document.getElementById("bookingForm").onsubmit = function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const thankYouMessage = document.getElementById("thankYouMessage");
-            thankYouMessage.style.display = "block";
-
-            setTimeout(() => {
-                thankYouMessage.style.display = "none";
-                toggleModal(); // Close modal after showing thank you message
-            }, 3000); // Hide message after 3 seconds
-        }
-    </script>
 </body>
 </html>

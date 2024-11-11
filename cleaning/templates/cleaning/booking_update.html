@@ -15,13 +15,21 @@
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                {{ form.as_p }}
+                {{ form.cleaning_service.label_tag }} {{ form.cleaning_service }}
+                {{ form.first_name.label_tag }} {{ form.first_name }}
+                {{ form.last_name.label_tag }} {{ form.last_name }}
+                {{ form.contact_number.label_tag }} {{ form.contact_number }}
+                {{ form.address.label_tag }} {{ form.address }}
+                {{ form.additional_info.label_tag }} {{ form.additional_info }}
+                {{ form.booking_date.label_tag }} {{ form.booking_date }}
+                <!-- Status field is omitted here -->
             </div>
             <div class="button-group">
                 <button type="submit" class="btn update-btn">Update Booking</button>
                 <a href="{% url 'u_home' %}" class="btn cancel-btn">Cancel</a>
             </div>
         </form>
+        
     </div>
 </body>
 </html>

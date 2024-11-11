@@ -159,36 +159,3 @@ document.getElementById("bookingForm").onsubmit = function(event) {
 document.getElementById("bookNowBtn").onclick = function() {
     toggleModal();
 }
-document.getElementById('bookingForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevents the default form submission
-    
-    // Collect form data
-    const formData = new FormData(this);
-    
-    // Send the data to the backend using Fetch API (or AJAX if preferred)
-    fetch('/submit-booking', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Display thank-you message
-            document.getElementById('thankYouMessage').style.display = 'block';
-            document.getElementById('bookingForm').style.display = 'none';
-            
-            // Update the calendar with the booking date
-            markCalendarAsBooked(formData.get('booking_date'));
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-
-function markCalendarAsBooked(date) {
-    // Assuming you have a calendar display or function that takes in a date and marks it
-    const calendarElement = document.querySelector(`[data-date="${date}"]`);
-    if (calendarElement) {
-        calendarElement.classList.add('booked'); // Add 'booked' class to the date
-        calendarElement.textContent = 'Booked';
-    }
-}

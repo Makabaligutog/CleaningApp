@@ -17,11 +17,10 @@
                 <h1 class="site-title">Sayago's Cleaning Co.</h1>
             </div>
                 <ul class="centered-menu">
-                <li><a href="{% url 'u_home' %}">Home</a></li>
-                <li><a href="{% url 'user_services' %}">Services</a></li>
-                <li><a href="{% url 'user_about' %}">About Us</a></li>
-                <li><a href="{% url 'user_blog' %}">Blog</a></li>
-                <li>{{ request.user.username }}</li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home_services' %}">Services</a></li>
+                    <li><a href="{% url 'home_about' %}">About Us</a></li>
+                    <li><a href="{% url 'home_blog' %}">Blog</a></li> 
             </ul>
         </nav>
     </header>

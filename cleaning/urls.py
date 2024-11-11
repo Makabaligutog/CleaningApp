@@ -25,6 +25,14 @@ urlpatterns = [
     path('DeepHomeCleaning/', views.deep_home, name='deep_home'),
     path('DeepUpholsteryShampooing/', views.deep_holstery, name='deep_holstery'),
     path('SuperiorSteamSterilization/', views.sterilization, name='sterilize'),
+    path('ResidentialCleaning/', views.residential_cleaning, name='residential_cleaning'),
+    path('CommercialCleaning/', views.commercial_cleaning, name='commercial_cleaning'),
+    path('MoveInMoveOutCleaning/', views.move_in_cleaning, name='move_in_out'),
+    path('CarpetCleaning/', views.carpet_cleaning, name='carpet_cleaning'),
+    path('WindowCleaning/', views.window_cleaning, name='window_cleaning'),
+    
+    
+    
 
     
     # Admin URLs
@@ -35,6 +43,7 @@ urlpatterns = [
     path('admin_dashboard/', views.admin_dashboard, name='ad_dashboard'),
     path('ratings/', views.ratings_view, name='ratings'),
     path('save_ratings/', views.save_ratings, name='save_ratings'),
+    path('upload-service/', views.upload_service, name='upload_service'),
 
     
     path('booking/update/<int:pk>/', BookingUpdateView.as_view(), name='update_booking'),

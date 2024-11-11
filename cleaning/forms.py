@@ -16,6 +16,10 @@ class BookingForm(forms.ModelForm):
             'user', 'cleaning_service', 'first_name', 'last_name', 'contact_number',
             'address', 'additional_info', 'status', 'booking_date'
         ]
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        exclude = ['status']
      
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)

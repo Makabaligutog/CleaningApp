@@ -49,7 +49,50 @@
             <h2 class="section-subtitle">Our Services</h2>
             <h1 class="section-title">We've got what you need!</h1>
             <div class="services-grid">
-                <!-- Existing Services -->
+                <div class="service-card">
+                    <img src="{% static 'images/services7.jpg' %}" alt="Residential Cleaning" class="service-image">
+                    <div class="service-content">
+                        <h3>Residential Cleaning</h3>
+                        <p>Expert cleaning for your home, covering every room to ensure a spotless, fresh living space.</p>
+                        <a href="{% url 'residential_cleaning' %}" class="service-button">Learn More</a>
+                    </div>
+                </div>
+        
+                <div class="service-card">
+                    <img src="{% static 'images/services8.jpg' %}" alt="Commercial Cleaning" class="service-image">
+                    <div class="service-content">
+                        <h3>Commercial Cleaning</h3>
+                        <p>Professional cleaning services for offices, retail spaces, and other commercial properties to keep your work environment pristine.</p>
+                        <a href="{% url 'commercial_cleaning' %}" class="service-button">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="{% static 'images/services9.jpg' %}" alt="Move-in/Move-out Cleaning" class="service-image">
+                    <div class="service-content">
+                        <h3>Move-in/Move-out Cleaning</h3>
+                        <p>Specialized cleaning services to make your transition in or out of a home seamless and stress-free.</p>
+                        <a href="{% url 'move_in_out' %}" class="service-button">Learn More</a>
+                    </div>
+                </div>
+        
+                <div class="service-card">
+                    <img src="{% static 'images/services0.jpg' %}" alt="Carpet Cleaning" class="service-image">
+                    <div class="service-content">
+                        <h3>Carpet Cleaning</h3>
+                        <p>Our carpet cleaning services refresh your carpets, removing dirt, stains, and allergens for a healthier home.</p>
+                        <a href="{% url 'carpet_cleaning' %}" class="service-button">Learn More</a>
+                    </div>
+                </div>
+        
+                <div class="service-card">
+                    <img src="{% static 'images/services11.jpg' %}" alt="Window Cleaning" class="service-image">
+                    <div class="service-content">
+                        <h3>Window Cleaning</h3>
+                        <p>Efficient window cleaning services that leave your windows crystal clear and streak-free.</p>
+                        <a href="{% url 'window_cleaning' %}" class="service-button">Learn More</a>
+                    </div>
+                </div>
                 <div class="service-card">
                     <img src="{% static 'images/services1.jpg' %}" alt="Anti-Bacterial Mist Treatment" class="service-image">
                     <div class="service-content">
@@ -67,8 +110,6 @@
                         <a href="{% url 'car_interior' %}" class="service-button">Learn More</a>
                     </div>
                 </div>
-                
-                <!-- Additional Services -->
                 <div class="service-card">
                     <img src="{% static 'images/services3.jpg' %}" alt="Deep Dry Cleaning" class="service-image">
                     <div class="service-content">

@@ -15,7 +15,8 @@ from .forms import AdminSignupForm, AdminLoginForm
 from .models import ServiceRating
 from datetime import datetime
 from calendar import month_name
-
+from .models import Service
+from django.core.files.storage import FileSystemStorage
 
 
 
@@ -77,11 +78,11 @@ def signup_view(request):
             user = form.save()
             login(request, user)  # Log the user in after registration
             messages.success(request, 'Registration successful.')
-            return redirect('some_redirect_url')  # Redirect to a relevant page (e.g., profile, home)
+            return redirect('login')  # Redirect to a relevant page (e.g., profile, home)
     else:
         form = RegisterForm()
-
     return render(request, 'cleaning/register.html', {'form': form})
+
 # Booking Creation View
 def create_booking(request):    
     if request.method == 'POST':
@@ -130,7 +131,7 @@ class create_booking_views(View):
                 return JsonResponse({'error': "Form invalid"}, status = 405)
         except Exception as e:
             return JsonResponse({'error': f'{e}'}, status = 500)
-        
+               
 # User Profile View
 @login_required
 def profile_view(request):
@@ -275,7 +276,28 @@ def save_ratings(request):
     # If not POST, redirect to ratings page
     return redirect('ratings')
 
+# Upload a services
+def upload_service(request):
+    if request.method == 'POST' and request.FILES['image']:
+        name = request.POST['name']
+        description = request.POST['description']
+        image = request.FILES['image']
 
+        # Save the image and service data
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        file_url = fs.url(filename)
+
+        new_service = Service(
+            name=name,
+            description=description,
+            image=file_url
+        )
+        new_service.save()
+
+        return redirect('ad_services')  # Redirect to services page
+
+    return render(request, 'cleaning/admin_services.html')
 
 
 # User Logout View
@@ -316,7 +338,8 @@ def ratings_view(request):
 
 # Admin services
 def admin_services(request):
-    return render(request, 'cleaning/admin_services.html')
+    services = Service.objects.all()
+    return render(request, 'cleaning/admin_services.html', {'services': services})
 
 def admin_about(request):
     return render(request, 'cleaning/admin_about.html')
@@ -352,3 +375,21 @@ def deep_holstery(request):
 
 def sterilization(request):
     return render(request, 'cleaning/sterilization.html')
+
+def residential_cleaning(request):
+    return render(request, 'cleaning/residential.html')
+
+def commercial_cleaning(request):
+    return render(request, 'cleaning/commercial.html')
+
+def move_in_cleaning(request):
+    return render(request, 'cleaning/move_in.html')
+
+def carpet_cleaning(request):
+    return render(request, 'cleaning/carpet.html')
+
+def window_cleaning(request):
+    return render(request, 'cleaning/window.html')
+
+
+

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 import uuid  # Required for UUIDField
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
+
 
 class ServiceRating(models.Model):
     SERVICE_CHOICES = [
@@ -97,4 +99,12 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking by {self.first_name} {self.last_name} - {self.cleaning_service}"
+    
+class Service(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to='services_images/')
+    created_at = models.DateTimeField(auto_now_add=True)  # Automatically set on creation
 
+    def __str__(self):
+        return self.name
