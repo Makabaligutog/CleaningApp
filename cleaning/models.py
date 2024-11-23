@@ -77,11 +77,13 @@ class Booking(models.Model):
 
     PENDING = 'pending'
     CONFIRMED = 'confirmed'
+    DENIED = 'denied'
     COMPLETED = 'completed'
 
     STATUS_CHOICES = [
         (CONFIRMED, 'Confirmed'),
         (PENDING, 'Pending'),
+        (DENIED, 'Denied'),
         (COMPLETED, 'Completed'),
     ]
 

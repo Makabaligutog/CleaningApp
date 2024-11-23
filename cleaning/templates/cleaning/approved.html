@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings - Sayago Cleaning Inc.</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/approved.css' %}?101">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+                    <li><a href="{% url 'ad_dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'ad_approved' %}" class="active">Appointments</a></li>
+                    <li><a href="{% url 'ratings' %}">Ratings</a></li>
+                    <li><a href="{% url 'owner_login' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Bookings</h1>
+            </header>
+
+            <main>
+                <div class="totals-container">
+                    <div class="total-box">
+                        <h2 id="total-bookings">{{ total_bookings }}</h2>
+                        <p>Total Bookings</p>
+                    </div>
+                    <div class="total-box">
+                        <h2 id="approved-bookings">{{ approved_bookings }}</h2>
+                        <p>Approved Bookings</p>
+                    </div>
+                    <div class="total-box">
+                        <h2 id="pending-bookings">{{ pending_bookings }}</h2>
+                        <p>Pending Bookings</p>
+                    </div>
+                </div>
+
+                <section class="admin-panel">
+                    <!-- Approved Bookings Section -->
+                    <h2>Approved Bookings</h2>
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Search by customer name..." onkeyup="searchCustomer()">
+                    </div>
+
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
+                                <th>Services</th>
+                                <th>Date Booked</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="approved-appointments-table">
+                            {% if bookings %}
+                                {% for booking in bookings %}
+                                    <tr data-booking-id="{{ booking.booking_id }}">
+                                        <td>{{ booking.booking_id }}</td>
+                                        <td>{{ booking.user.username }}</td>
+                                        <td>{{ booking.user.email }}</td>
+                                        <td>{{ booking.first_name }}</td>
+                                        <td>{{ booking.last_name }}</td>
+                                        <td>{{ booking.contact_number }}</td>
+                                        <td>{{ booking.address }}</td>
+                                        <td>{{ booking.cleaning_service }}</td>
+                                        <td>{{ booking.booking_date }}</td>
+                                        <td class="status-cell">{{ booking.status }}</td>
+                                        <td>
+                                            <button 
+                                                class="action-btn accept-btn" 
+                                                onclick="handleAction({{ booking.booking_id }}, 'approve')" 
+                                                {% if booking.status != 'pending' %}disabled{% endif %}>
+                                                Approve
+                                            </button>
+                                            <button 
+                                                class="action-btn delete-btn" 
+                                                onclick="handleAction({{ booking.booking_id }}, 'deny')" 
+                                                {% if booking.status != 'pending' %}disabled{% endif %}>
+                                                Deny
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="11">No bookings found.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sayago Cleaning Inc. Admin Dashboard</p>
+    </footer>
+
+    <script src="{% static 'scripts/admin_dash.js' %}"></script>
+    <script>
+        // Totals
+        const totalBookings = {{ total_bookings|default:0 }};
+        const approvedBookings = {{ approved_bookings|default:0 }};
+        const pendingBookings = {{ pending_bookings|default:0 }};
+
+        document.getElementById('total-bookings').textContent = totalBookings;
+        document.getElementById('approved-bookings').textContent = approvedBookings;
+        document.getElementById('pending-bookings').textContent = pendingBookings;
+
+        // Search Functionality
+        function searchCustomer() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const rows = document.querySelectorAll('#approved-appointments-table tr');
+
+            rows.forEach(row => {
+                const customerName = row.cells[1]?.textContent.toLowerCase() || '';
+                if (customerName.includes(input)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Approve/Deny Booking
+        function handleAction(bookingId, action) {
+            const confirmMessage = action === 'approve' 
+                ? 'Are you sure you want to approve this booking?' 
+                : 'Are you sure you want to deny this booking?';
+            if (!confirm(confirmMessage)) return;
+
+            const url = action === 'approve' 
+                ? `/approve-booking/${bookingId}/` 
+                : `/deny-booking/${bookingId}/`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+
+                    // Update the status in the table dynamically
+                    const row = document.querySelector(`tr[data-booking-id="${bookingId}"]`);
+                    const statusCell = row.querySelector('.status-cell');
+                    statusCell.textContent = action === 'approve' ? 'confirmed' : 'denied';
+
+                    // Disable buttons for this row
+                    row.querySelector('.accept-btn').disabled = true;
+                    row.querySelector('.delete-btn').disabled = true;
+
+                    // Update totals dynamically
+                    if (action === 'approve') {
+                        document.getElementById('approved-bookings').textContent = parseInt(document.getElementById('approved-bookings').textContent) + 1;
+                    }
+                    document.getElementById('pending-bookings').textContent = parseInt(document.getElementById('pending-bookings').textContent) - 1;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while processing the request.');
+            });
+        }
+    </script>
+</body>
+</html>

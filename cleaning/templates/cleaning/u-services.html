@@ -142,9 +142,27 @@
                         <a href="{% url 'sterilize'%}" class="service-button">Learn More</a>
                     </div>
                 </div>
-                
             </div> 
     </section>
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-subtitle">New Services</h2>
+            <h1 class="section-title">We've got what you need!</h1>
+            <div class="services-grid">
+                {% for service in services %}
+                    <div class="service-card">
+                        <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-image">
+                        <div class="service-content">
+                            <h3>{{ service.name }}</h3>
+                            <p>{{ service.description }}</p>
+                            <a href="{{ service.detail_url }}" class="service-button">Learn More</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
     <script src="{% static 'scripts/jquery.js' %}"></script>
     <script src="{% static 'scripts/user_index.js'%}"></script>
      

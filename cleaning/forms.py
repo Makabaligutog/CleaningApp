@@ -10,15 +10,7 @@ class ServiceReviewForm(forms.ModelForm):
         fields = ['customer_name', 'message', 'photo', 'rating']
         
 
-        # ISA RA KA BOOKINGFORM GAMITON
-# class BookingForm(forms.ModelForm):
-#     class Meta:
-#         model = Booking
-#         fields = [
-#              'cleaning_service', 'first_name', 'last_name', 'contact_number',
-#             'address', 'additional_info', 'status', 'booking_date',
-#             # 'user', DILI GAMITON KAY BACK END MO HANDLE - SA VIEWS.PY
-#         ]
+
         
 class BookingForm(forms.ModelForm):
     class Meta:

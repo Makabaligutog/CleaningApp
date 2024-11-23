@@ -391,5 +391,38 @@ def carpet_cleaning(request):
 def window_cleaning(request):
     return render(request, 'cleaning/window.html')
 
+#approved booking
+def approved(request):
+     # Fetch bookings data from the database
+    all_bookings = Booking.objects.all()  # Replace with appropriate queryset if necessary
+    approved_bookings = Booking.objects.filter(status='approved')
+    pending_bookings = Booking.objects.filter(status='pending')
 
+    # Calculate totals
+    total_bookings = all_bookings.count()
+    approved_count = approved_bookings.count()
+    pending_count = pending_bookings.count()
 
+    # Prepare context
+    context = {
+        'bookings': all_bookings,            # Use this for the table
+        'approved_bookings': approved_count, # Count of approved bookings
+        'pending_bookings': pending_count,   # Count of pending bookings
+        'total_bookings': total_bookings     # Total bookings
+    }
+    return render(request, 'cleaning/approved.html', context)
+def approve_booking(request, booking_id):
+    if request.method == 'POST':
+        booking = get_object_or_404(Booking, pk=booking_id)
+        booking.status = Booking.CONFIRMED  # Update to approved status
+        booking.save()
+        return JsonResponse({'success': True, 'message': 'Booking approved successfully.'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
+
+def deny_booking(request, booking_id):
+    if request.method == 'POST':
+        booking = get_object_or_404(Booking, pk=booking_id)
+        booking.status = Booking.DENIED  # Update to denied status
+        booking.save()
+        return JsonResponse({'success': True, 'message': 'Booking denied successfully.'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method.'})

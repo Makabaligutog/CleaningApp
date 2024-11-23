@@ -51,10 +51,14 @@ urlpatterns = [
     path('booking/create/', views.create_booking, name='create_booking'),  # New path for creating booking
     path('booking_create/views/', create_booking_views.as_view()),
     path('add_review/', views.add_review, name='add_review'),
-    
+    path('ApprovedBooking/', views.approved, name='ad_approved'),
     # admin book
     # path('admin/booking/update/<int:booking_id>/', views.update_booking_status, name='admin_update_booking'),
     path('update-booking-status/<int:booking_id>/', views.update_booking_status, name='update_booking_status'),
+
+    #approved page
+    path('approve-booking/<int:booking_id>/', views.approve_booking, name='approve_booking'),
+    path('deny-booking/<int:booking_id>/', views.deny_booking, name='deny_booking'),
 
     
     # admin login and signup
@@ -66,3 +70,5 @@ urlpatterns = [
     path('accept-booking/<int:booking_id>/', views.accept_booking, name='accept_booking'),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
